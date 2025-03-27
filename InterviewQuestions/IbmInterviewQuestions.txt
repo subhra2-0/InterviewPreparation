@@ -1,0 +1,1 @@
+Q- Why microservices architecture is picked upon Monolothic architecture?

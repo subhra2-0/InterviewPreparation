@@ -1,0 +1,5 @@
+find the max, secondLargest and thirdLargest.
+:duplicate elements.
+occurences using maps.
+
+prime number question using java8;

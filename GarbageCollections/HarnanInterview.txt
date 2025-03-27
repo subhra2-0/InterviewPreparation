@@ -1,0 +1,32 @@
+Interview Questions:
+
+what is interface?
+What is multithreading?
+Disadvantage of microservices?
+what is new in java8 about JVM?
+how Hasmanp works in internally?
+Abstract class vs interfaces?
+Comparator vs Comparable?
+OOPs Concept?
+Collection Framework?
+java 8 vs older version?
+basic string manipulation code?
+Static classes, final keyword?
+Serialization and deserialzation in java
+Multithreading?
+Jdk 1.8 features, 
+filter the stream,
+Whati is predicate interface?
+what is functional interface?
+how to write query in jpa
+
+String buffer vs String builder?
+StringBuffer is synchronized i.e. thread safe. It means two threads can't call the methods of StringBuffer simultaneously.
+StringBuilder is non-synchronized i.e. not thread safe. It means two threads can call the methods of StringBuilder simultaneously.
+StringBuffer is less efficient than StringBuilder and slow as compared to string builder.
+
+
+
+
+
+

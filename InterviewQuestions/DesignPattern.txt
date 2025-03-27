@@ -1,0 +1,12 @@
+SingleTon design pattern-
+SingleTon design pattern is a creational designPattern
+UseCase: If you have a common sharable data and you want to use across all the classes rather than sharing it
+manually using static keyword we can use Singleton class.
+java.lang.Runtime , since runtime is unique there should be only one instace of runtime class.
+
+Types of SingleTon:
+Eager SingleTon: Where the instance of the class will be created while the class loading.
+May lead to resource wastage. Because instance of class is created always, whether it is required or not
+
+Lazy initialization: In this method, object is created only if it is needed. This may prevent resource wastage
+

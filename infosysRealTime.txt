@@ -1,0 +1,75 @@
+
+
+
+
+
+Infosys Real interview:
+
+comparator study it properly java8 how to use comparator 
+schedular what will happen if it is in application side and server side.
+difference between bitbucket and github
+sql query to delete duplicate entries.
+sql query for second largest
+bean scope
+conflicts in git
+origin in bitbucket
+whatis.gitignore
+how loggers implemented in your app.
+
+
+agile methodology;
+caching;
+indxing in sql;
+new technology u worked kafka
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Collection.sort(emp, new IdComparator());
+
+select emp_salary from Emp_table order by emp_salary desc 2 limit(1,2);
+
+
+select 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,126 @@
+Infosys Interview Questions:
+What is garbage collection in java?
+Answer: Garbage collection is an automatic of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.
+Basically an unreferenced object is removed from the heap memory so that any the other object can utilise the memory.
+
+Note:Jvm helpes in automatic garbage collections. It allocates and deallocates memory in java.
+
+what is dynamic binding?
+->when type of object is determined at the run-time it's known as dynamic binding(runtime polymorphism).
+->when type of object is determined at compile-time it's known as static binding(method overloading).
+
+What is String in java?
+-> String is immutable class in java it means if we assign a value it cannot be changed. If we change a string value,then it will create new string object in m/m and point a variable to the new m/m location.
+
+How many ways we can create a String object?
+-> using string literal and String object.
+Example: String s1= "Code";
+         String s2= new String("Code");
+
+What is String Constant pools?
+The memory space allocated in the heap memory to store the string literal is called string constant pool.
+
+-> String s1="Subhrajit";
+   String s2="Subhrajit";
+   sout(s1==s2); it will print true.
+   As when you create a string literal it will create an object in scp in the memory and the object will be unique.
+   The 2 references will be pointing to the same object in scp.
+
+->String s1= new String("Subhrajit");
+  String s2= new String("Subhrajit");
+  sout(s1==s2); it will print false.
+  As when you create an object of String using new instance it will create 2 different objects in the heap and the reference variable will be pointing to 2 different objects in the heap.
+
+String tricky questions:
+how many object will get created?
+String s1="Code";
+String s2= new String("Code");
+
+sout(s1==s2);//false
+sout(s1.equals(s2)); //true
+
+for this question 2 objects will get created as for string literal one object is already been created in string constant pool, the other object is being created in heap memory
+
+how many objects will get created?
+String s1= new String("code");
+String s2 = new String("code");
+
+All total 3 objects will get created... first using new keywords 2 objects will get created one in heap and the other one in scp. the second line will create another object for code in heap.
+
+
+->String constant pools facilitates reusing the existing string objects in scp.
+
+For this code :
+ 
+String s1 = new String("Subhrajit");
+It will create 2 objects in the heap and the other one in string constant pool.
+Jvm is smart enough to create 2 objects.
+
+
+String Intern-
+String s1= "code";
+String s2 = new String("Code");
+
+String s3 =s2.intern();
+The s3 will point to the object which is in the scp.
+s3==s2(true);
+s3==s1(false);
+
+What are different ways to create thread in java?
+We can a create thread by extending thread class and by implementing runnable interface.
+
+When we implement runnable interface do we need to override any specific method?
+Ans: We need to override the run method.
+
+What are the different stage of thread?
+Answer: Different stages are :
+        ->first stage of the thread is in new state when you create a thread it is in new stage.
+        ->the second stage is start a thread by calling start method before starting the execution of thread it goes to runnable stage that means that           thread is ready to run as soon as it start the execution of 
+          run method it goes to runnable state. 
+        -> if you want to pause the thread for sometime you can execute the method like sleep or wait.
+        ->if you want to resume the thread you can call notify method if thread is waiting for some other event
+          outside or from some other thread.f
+        ->if you want the thread to terminate you can call stop method.
+
+Collections:
+We have used array list, linked list and hashMap.
+What is the significance of hashmap:
+Hashmap is basically used to store the data in key value pair.
+Concept of bucketing in hashMap?
+
+Their is concept of normal hashmap and concurrent hashMap, When shall i go for normal hashmap and when shall I go for concurrent hashMap?
+
+
+
+Spring boot questions:
+Steps to connect db using mysql db what are the steps?
+->add the necessary dependency in pom.xml for mysql db.
+->add the configuration in application.properties the driver, username, password,url.
+->We can use the jpa repository or crud repository to perform the db operation
+
+
+How to monitor Spring boot application?
+We can monitor using actuator and it's library which has endpoint /health and using admin server also we can monitor the health.
+
+what is the use of spring-web dependency?
+->If you want to develop a web application using restful and spring mvc api then spring-web-starter is important.
+Starter of Sring web uses Spring MVC, REST and Tomcat as a default embedded server.
+
+
+Microservices 
+Advantages of Microservices.
+
+
+
+
+
+
+Databases:
+
+Normalisation:
+->it is a technique of organising the data in database.
+->It is a systematic way to decompose the table to eliminate data redundancy.
+
+
+
+

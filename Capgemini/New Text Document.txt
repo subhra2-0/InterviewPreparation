@@ -1,0 +1,41 @@
+Serialization and deserialization in java:
+
+
+Serialization:
+Serialization is the process of conversion of java object into static stream of bytes which we can save to a database or transfer over a network.
+classes that are eligible for serialization need to implement a special marker interface, Serilizable
+
+
+A class to be serialized successfully , two condition must meet:
+-> The class must implement Serializable interface 
+-> All of the fields in class must be Serializable , if a field is not serializable , it must be marked as transient.
+-> Static field belong to a class and are not serialized.
+
+Eg:
+Employee e = new Employee();
+e.setId(1);
+e.setName("Subhrajit Bark");
+
+FileOutputStream fos = new FileOutputStream("/c:users/sb93740/sub.txb");
+ObjectOutputStream oos =new ObjectOutputStream(fos);
+oos.writObject(e);
+
+
+Deserialization:
+It is precisely opposite, you will start with stream of object and recreate it to the object.
+
+FileInputStream fis = new FileInputStream("/c:users/sb93740/sub.txb");
+OutputInputStream ois = new ObjectInputStream(fis);
+Employee e =ois.readObject();
+
+Q-Serialuuid: it is required to maintain the versioning of the serializable class.
+
+
+Externalization:
+When you want to customize deserilization we can use externalization.
+We use transient keyword infront of a field to ignore the serialization of that field.
+suppose we have 100 of similar fields like that so transient is not an efficient way, we can implement externalizable 
+in externalizable we writeExternal for serialization and readExternal for deserialization.
+here we can specify which fields has to be serialized and deserialized.
+
+Before the jvm had control whcih field to be serialized and which not to be, now after implementing externilazable the application have full control.

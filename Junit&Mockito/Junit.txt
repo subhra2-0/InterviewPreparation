@@ -1,0 +1,23 @@
+Junit Interview Questions:
+ 
+What is the purpose of Unit Testing?
+-> The purpose of unit Testing the check the proper functionality of the application, functionality in the sense the methods and class.
+It is done in the developers level.
+
+What is Mock?
+->Mock is a nullified instance class.It is to creat a Mock instance and inject the mock instance as per requirement
+
+What is Stub?
+-> Mock+Instruction how to respond to certain method calls.
+We use when&then to stub the values.
+
+Why we need spy?
+when you require both the class logic and to stub one or more of it's methods.
+We can use Mockito spy to partial mock an object. When we spy on an object, the real methods are called unless it's stubbed.
+
+Note:To enable mockito annotation we can annotate @ExtendWith(value={MockitoExtension.class})
+
+What is @InjectMocks?
+It will create the real instance of a class and whatever dependencies are there to that class it will inject those mocks.
+
+

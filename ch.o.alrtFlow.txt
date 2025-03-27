@@ -1,0 +1,42 @@
+Ch.o.alrt Flow:
+
+Channels: Cops,CTA,CTH.
+
+-> Before MoEngage flow we used to send notification using proxy server to fcm and apns.
+After migrating to Moengage we send the notification throug Moengage to fcm .
+ch.o.alrt is direct api call. and other are asyncronous call kfkl, eml that why we need to run a job for that to send the reverse feed.
+
+So from upper stream alerts what they send to communication hub they the alerts goes back in reverse feed flow.
+
+ReverseFeed:
+Once you procees our pn or sms we get certain kind status of the delivery, so basically we get an acknowledgement and gives us the information about the 
+alert which have been sent eg: successfully delivered or failed.
+
+COPS, CTA,CTH the alerts what we get as these are asyncronous communication while giving reverse feed to those channel we have microservices(ALH) which runs 
+the scheduler, every 7 minutes will run the job,  So alh will fetch data for every last 7 minutes and it will prepare a json and send it to kafka topic.
+So those who have access to this topic they can check the status, Status eg: Pn submitted successfully, email -clicked, email-opened, email-deliverd.
+
+Once you get the request from the channels 
+
+Inbound flow:
+First status will reach to ssg then nginx will call then their is an Apim team and it will route to dch application
+
+
+
+OutBoundFlow:
+once dch get the request it send to EgressNginx via ssg to the 3rd party vendor(fcm,apns,sinch..etch)Sinch is for message flow
+For apns ios device we are connecting to the 3rd party vendor through proxy server.
+
+
+To Send a pn we need to have device details, CTA have device details so when they send alerts or template or payload to dch app we don't have to call 
+to the db but COPs and CTH they don't have device details with them when they send alrts,pn, and payload to dch application so they make a call to citi alert api call to get the device details from citi alert team.
+
+In schemas we have the xsd files, so this files are given by the governance team, it has request and response xsd file so this is created based on swagger file, swagger file we recieved from buisness team.
+We interact with buisness team, get the xsd and we create pojo and configure it to our microservice.
+
+
+
+
+Note:
+We will be defining the uri in config files and will be mentioning the flow class, it will act as an entrypoint,
+like a controller and we will defind eth flow class for further operation and mentioning the services.

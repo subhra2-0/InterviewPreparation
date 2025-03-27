@@ -1,0 +1,21 @@
+Garbage collections:
+
+Q-Where are objects created in memory? On Stack or heap?
+Whenever an object is created it is stored in the heap memory and stack memory contains the reference to it. Stack memory only contains local primitive variables and reference variables to the object.
+
+->Thus all objects are always created on heap in java. EG
+CustomObj s1 = new CustomObj();
+
+
+Reverse a String:
+
+String str = "hello how are you!";
+String res = " ";
+
+for(int i=n-1; i>=0 ; i++){
+
+res=res+n.charAt(i);
+
+}
+
+ 

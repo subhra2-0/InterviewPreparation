@@ -1,0 +1,21 @@
+DelloiteIndia:
+
+pagignation, api response time, sceduler internal implementation, joins in sql, find the department wise employee with max_salary,
+given arr[4,1,-2], find the subarray with sum =0, microservices Architecture. Use of cartesian product cross join
+
+
+3 queries to be remembered: 
+
+
+departmentWise sum salary
+select department, sum(emp_salary) from emp_table group by department having sum(emp_salary) > 100;
+
+
+max salary for employee in each department:
+
+select emp_salary, emp_department from emp_table from emp inner join (select max(emp_salary), department from emp_table group by department) e2 on 
+e1.department_id= e2.department_id AND e1.emp_salary = e2.emp_salary.
+
+Find the nth highest salary:
+select emp_salary from emp_table e1 where (N-1) = select count(e2.salary)
+ from employee e2 where e2.salary > e1.salary.

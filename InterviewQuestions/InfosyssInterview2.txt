@@ -1,0 +1,157 @@
+Question 1) What are the java8 features?
+Answer: We have the java 8 features like:
+->Functional Interface
+-> Lambda expression
+-> Stream api
+-> Optional classes
+->Method references 
+
+java8 optional classes brief explanation:
+Question 2: Why optional objects?
+Java optional class provides a way to deal with null values.
+It is used to represent a value is present or not.
+Java8 added a new optional available in java.util.package.
+->Null pointer exception is a common issue in java application.
+To prevent this we add frequent null checks in our code to check if the variable is not empty. 
+Optional actually provides a better approach.
+
+->You can consider a Optional as a container it can contain a value or cannot contain a value.But sure the container operating
+on that won't give you null pointer exception atleast.
+
+->When we hava an optional object , we can check if there is a value or not with the isPresent() method.
+it will return true if it has value inside it.
+
+Code: 
+@GetMapping(path="/id/{id}")
+public ResponseEntity<?> getById(@PathVariable Integer id){
+
+Optional<Employee> e = repo.findById(id);
+if(e.isPresent()){
+Optional<String> name = Optional.Of(e.get().getName()); // way to create an optional object
+if(name.isPresent()){
+return new ResponseEntity<>(name.get().toUpperCase,HttpStatus.Ok);
+}
+
+return new ResponseEntity<>(e.get(), HttpStatus.OK);
+
+}
+else
+return new ResponseEntity<>("Sorry Employee with given ID is not present", HttpStatus.NOT_FOUND);
+
+}
+
+It has also isEmptyMethod() if the value is present inside the container or not. 
+
+Optional.of() -> The object must contain any value otherwise it will throw null pointer exception
+Optional.ofNullable() -> Not necessarily the object should be null if it is a null it won't throw exception it will return null reference.
+
+there is another method called ifPresentOrElse(it will take consumer as the first argument, and runnable the thing it will return once it find empty);
+name.ifPresentOrElse(n->System.out.println("name is present "+n.toUppercase, ()-> sout("name is null")));
+
+
+Difference between Array and ArrayList?
+->Array is static in size.(int arr[] = new int[10])
+->In array we can store both object and primitive types.(int arr[] = new int[10], Integer arr[] = new new Integer[10])
+->Faster in operation as array are fixed in size.
+->While it comes to ArrayList it is dynamic in size(ArrayList<> array = new List<>();)
+->We cannot store primitive datatypes in ArrayList.Only the wrapper object and custom object can be stored.if you
+try to add some primitive it will automatically convert to object.
+->While arrayList because of resize operation it is slow in performance.
+
+Difference between ArrayList and Vector?
+->ArrayList is not synchronized and ArrayList can be synchronized using explicitly using collections.Synchronized.
+->As arrayList is not synchronized hence it is not threadSafe means multiple thread can access the particular object.
+->As it is not Thread safe , it makes arrayList more faster in performance.
+where as
+->Vector is synchronized , it Thread safe , for which it makes it operation bit 
+
+Q->ArrayList vs LinkedList?
+Answer: 
+->ArrayList internally uses a dynamic array to store it's elements 
+->Manupulation with arrayList is slow as it internally uses array so it has contigous memory, if we remove one element
+it has to bit shifting for other element in the memory.
+->Accessing elements in arrayList is faster as it implements randomaccessOpertion and it does index based searching
+->Memory overhead is less as each index hold only actual objects.
+
+LinkedList uses doubly linkList to store it's elements
+->Manupulation with LinkedList is faster as it uses doubly linkedList so there is not bit shifting operation is required.
+by using manupulation of pointer we can add element and delete elements from linkedList
+->Accessing elements in LinkedList is bit slower as it requires node by node traversal.
+->Memory overhead is more as we have to manage the data along with nodes with has pervious address and next address.
+
+Q-How does HashMap works internally?
+HashMap<String,Integer> map = new HasMap<>();
+When we do map.put(Physics,35), it will create a 16 buckets for you. and every bucket will be having an index.
+And each bucket will be having nodes. so the bucket will be behaving as in linkedList structure.
+We know the node consist of hash,key,value,next...next is basically will be storing the address of next node.
+put(k,v){
+hash =hashCode(k);
+index=hash&(n-1);
+}
+and from here will be getting an index suppose we get index as 4 then
+the node will be hash=4321(calculated by the above formula), key=physics, value= 35, node =null(the next address of the node)
+
+Note- HashCollision, the hash which has been previously calculated and the current hash values matches then it is a hashCollision.
+so what will happen if there's a hashCollision then it will have the same index once it have the same index it will check the previous node and
+existing node if they have same key value if the have the same key then it will replace the current one with the previous one.
+If they have the different keys then the previous node will point to current node means the previous node will store the address of the current node in next box. so the bucket will be in a linkedList structure.
+Note: if the key is null then it will store the node is zeroTh index.
+
+Q-HashTable vs HasMap?
+In HashMap;
+We can insert one null key, if we insert more than one null key it will get overriden with the new null key.
+We can have multiple null values in HashMap.
+HashMap is not synchronized it means it is not thread safe multiple threads can access the objects so it's faster in operation.
+
+
+In HashTable;
+We cannot insert either null key or null value.
+HashMap is synchronized it means it is thread safe at one time one thread can only access the object so it's bit slower in operation.
+
+Q-What is concurrent-HasMap?
+
+
+
+
+
+
+Q-Write a post method and get method for controller?
+Public ResponseEntity<Contact> saveContact(@RequestBody ContactDto dto){
+ResponseEntity.Ok(service.saveContact(dto));
+
+Public ResponseEntity<Contact> getContact(@PathVariable LongId){
+ResponseEntity.Ok(service.getContact(id));
+
+}
+
+}
+
+Q-@Controller vs @RestController
+@RestController = @Controller + ResponseBody
+Answer: So what I understand is before when we were using spring mvc methods were being there used to be methods which render the complete html to the client side and if we want some rest endpoints or restapis we use this @responseBody annotation as restapi are supposed to return httpResponse in the form of json,xml or string.
+So in spring boot if we have a restController we have all the rest end points in it and the endpoints will obvioulsy return httpResponseStatus hence we use @RestController which is a combination of @Controller and @responseBody.
+
+Q-@Qualifier vs @Primary?
+
+Ans:Both of this annotation are actually used to resolve the bean ambiguty, but in different scenarios.
+
+@Primary , like when their is multiple bean in the spring container and we want the default bean to be injected so we annotate with @primary on the concrete class level.
+@Qualifier, like when we want to explicitly use a bean then we can annotate with @Qualifier while autowiring itself.
+
+
+Q-Singleton design Pattern?
+refer the designPattern notes.
+
+Q-Why the main method in java is static?
+Answer- If the jvm calls the static method it doesn't require to create an object. 
+If suppose it were a non-static method jvm would first create an object before calling the main method, which would
+result in extra memory allocation difficulty. If we are not making it as static then we have to make an instance
+of that class but the starting execution point is the main method if the method is not being started how the object
+will be created.
+
+Note: In static method we cannot access non-static attributes unless we are passing the reference of the class access the non-static attribute
+
+Q-Call by value and Call by reference?
+
+
+

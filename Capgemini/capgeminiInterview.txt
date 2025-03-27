@@ -1,0 +1,281 @@
+
+Coding questions
+
+https://onecompiler.com/java/433cxemd8
+
+find the max, secondLargest and thirdLargest.
+:duplicate elements.
+occurences using maps.
+primenums
+listOfEmployee.
+
+Serialization and deserialization in java:
+
+
+Serialization:
+Serialization is the process of conversion of java object into static stream of bytes which we can save to a database or transfer over a network.
+classes that are eligible for serialization need to implement a special marker interface, Serilizable
+
+
+A class to be serialized successfully , two condition must meet:
+-> The class must implement Serializable interface 
+-> All of the fields in class must be Serializable , if a field is not serializable , it must be marked as transient.
+-> Static field belong to a class and are not serialized.
+
+Eg:
+Employee e = new Employee();
+e.setId(1);
+e.setName("Subhrajit Bark");
+
+FileOutputStream fos = new FileOutputStream("/c:users/sb93740/sub.txb");
+ObjectOutputStream oos =new ObjectOutputStream(fos);
+oos.writObject(e);
+
+
+Deserialization:
+It is precisely opposite, you will start with stream of object and recreate it to the object.
+
+FileInputStream fis = new FileInputStream("/c:users/sb93740/sub.txb");
+OutputInputStream ois = new ObjectInputStream(fis);
+Employee e =ois.readObject();
+
+Q-Serialuuid: it is required to maintain the versioning of the serializable class.
+
+
+Externalization:
+When you want to customize deserilization we can use externalization.
+We use transient keyword infront of a field to ignore the serialization of that field.
+suppose we have 100 of similar fields like that so transient is not an efficient way, we can implement externalizable 
+in externalizable we writeExternal for serialization and readExternal for deserialization.
+here we can specify which fields has to be serialized and deserialized.
+
+Before the jvm had control which field to be serialized and which not to be, now after implementing externilazable the application have full control.
+
+
+Interview questions:
+
+Q-write a get and post method?
+
+@GetMapping(path= "/id/{id}")
+public ResponseEntity<?> getEmployeeId(@PathVariable Integer id){
+Employee e = serviceManager.findById(id);
+return new ResponseEntity<>(e,HttpStatus.ok);
+}
+
+@PostMapping(path="/save")
+public ResponseEntity<?> saveCustomer(@RequestBody Employee e){
+
+Employee e = saveCustomer.save(e);
+return new ResponseEntity<>(e, HttpStatus.ok);
+
+}
+
+
+
+What is optional class in java?
+Ans: Optional provides a better approach to handle the null pointer exception in java, rather than using frequent null checks we can use optional.
+you can consider optional as a container, a container can contain a value or cannot contain a value.
+
+Consider this below ex:
+here if the value for the specific id is present it will return or else it gives us a method isPresent to handle the null exception.
+
+public ResponseEntity<?> getEmployee(@PathVariable Integer id){
+
+Optional<Employee> e = serviceManage.getEmployeeId(id);
+Optional<String> name = Optional.ofNullable(e.get().getName());
+name.ifPresent(n->sout(n))
+if(e.isPresent()){
+return new ResponseEntity<>(e.get(),HttpStatus.OK);
+}
+else {
+return new ResponseEntity<>("Sorry the object is not present", HttpStatus.NOT_FOUND);
+}
+
+
+}
+
+Q-How do you create an optional object?
+Ans:using  Optional.of().
+->We use Optional.of() when we are passing  an element which is not null.
+->We use Optional.ofNullable() it will create an container if the object is present or not it won't throw null pointer exception rather than it will return 
+an empty object.
+
+
+Another method called: ifPresent();ifPresentOrElse();
+it takes consumer in parameter if we want to print the name or something like that we can do it.
+
+
+SolidPrinciple:
+complete this:
+
+Dependency inversion principle: do not depend upon the concrete implementation rather than use the abstraction to inject dependencies.
+
+Why are we using dependency injection in the first case:
+We are using dependency injection to avoid tight coupling.
+
+DependencyInjection and IOC container:
+We can make our classes independent of dependecies, where object recieves their injection from external source rather than creating them internally , where as Ioc container creates and manages the lifecycle
+of dependencies.
+for injection we use:
+Constructor injection, field injection , setter injection.
+
+Constructor injection:
+We do instatiation with injection, this a more reliable way of injecting dependecies.
+
+field injection:
+in field injection we cannot make fields immutable.
+We use reflection api to inject into object.
+
+Setter injection:
+we have to creat a setter method for each field to inject the dependency.
+
+Constructor injection is reccomended but why?
+->for immutability purpose, in non-thread safe env what if thread comes and change the value of propeties in the class.
+imutability doesn't work in the case of field injection.
+->in order to create the class we have provide the mandatory dep in constructor to avoid the null pointer exception.
+
+Constructor based injection is reccomended and why?
+->All required dependencies are available at the initialization time of creating spring bean class.(this reduces the code as well)
+->we can make the dependency as immutable and can avoid null pointer exception as we will be using all the dependency during initialization for creating the spring bean of class.
+->
+
+
+
+
+
+Exceptions:
+checked exception and unchecked exception and global exception and custom exception
+
+An exception is something which disrupts the normal flow of the execution of the code to handle such scenario we use exception. There are 2 kind of exceptions checked exception and unchecked exceptions.
+Exceptions in java are way to handle run time error.
+
+So basically checked exception are compile time exceptions, like it is used for recoverable conditions, scenarios 
+such as IOException for file handling, SQLException for database exception and ClassnotfoundException.
+the calling method should be also handle for the exception or else it won't get compile.
+
+where as unchecked exception are runtime exception this is caused because of the logical issues or programaticall error which developer has to handle.
+
+
+What is the benefit of using global exceptions.
+It is a way of centralizing the the exception across all the application rather than every time using try catch block for exception which will make the code less readable if there's any exception the @ControllerAdvice will take care of it as inside it all the exception will be defined.
+And we can also customize the exception according to client required mention the status code value and exception type in json structure.
+
+
+shallow cloning and deep cloning:
+
+
+Controller vs RestController:
+
+Controller are basically used to make class handler web pages it  return view basically before in spring we use to render the template or html to the client and suppose we had restful apis we will be using @Responsebody,
+but in spring boot we generally deal with rest api because we need to response in http and in http we will be having json or text for that we use restController which is a combination of both controller + responsebody.
+
+What is REST?
+Ans: Rest stands for Representational state transfer.
+It is a set of rules for building scalable webservices, and it uses standard http methods such as get,post,put,delete patch.
+
+
+why http is a stateless protocol?
+
+What is atomic and base principle in db?
+
+
+Atomicity : It ensures that a transaction is treated as single unit or work , hence if any failure situation encountered it will completely roll back. no partial execution of transaction is allowed.
+Real life example: Atm transaction.
+
+Consistency:
+Before the trasaction is performed and after the transaction is completed the sum of money should be equal.
+
+Isolation:
+when we try to convert a parallel schedule to serializable schedule. where one transaction is working independent of each other , so their intermediate state is not visible to the other, so that data consistency will be their.
+
+
+Durability:After the transactions are commited, its effect are stored permanently in database, regardless of system failure.
+
+Database connection pool:
+Connection pool is a cache of db connection, the same connection can be used when you future request are given to 
+the database.
+
+can we override a final or static method?
+
+
+Note*
+->Like we will be using String for the immutability purpose, thread-safe , where if want mutablity but thread-safe we can opt for String buffer, and where thread safety is not a concern we can go for String builder.
+
+*String buffer is synchronized , hence it will be thread safe as it is thread safe it's performance will be slow.
+
+*String builder is not synchronized, hence it is not thread safe as it is not thread safe, it's perfomance is faster.
+
+->Immutability of string offers security, synchronization, thread safety and more importantly memory optimazation becuase of scp where we reuse string objects.
+
+Why Strings are imutable, becuase first for the security purpose---> string is passed as parameter in network connection, in file path and for credentials related things if we modify the Strings it will be security vulnerabiltiy.
+
+for memory efficiency: in scp once the object is create multiple referece can use the same object making it reusable and optimizing the memory 
+
+ and String is also thread-safe hence their won't be possible of data inconsistency.
+
+String interview questions:
+
+String str = "Hello";
+StringBuffer strBuffer = new StringBuffer(str);
+
+System.out.println(str.equals(strBuffer));
+
+it will print false as in equals methods always compare the object which is an instance of the string here string buffer is not an instance of the string.
+
+*Spring also provide derived native query according to the method signature it will give generate the sql queries.
+
+public interface EmployeeRepository extends JpaRespository<Employee,Integer>{
+Employee findByName(String name);
+List<Employee> findByNameAndAge(String name, Integer age);
+
+}
+
+Writing custom native queries in jpaRepository?
+public interface EmployeeRepository extends JpaRepository<Employee,Integer>{
+@Query(value = "select * from employee where empId = :id", nativeQuery=true )
+Employee findEmployeeByNative(@Pram("id") Integer 
+@Query(value = "select * from employee where department = :department", nativeQuery=true)
+List<Employee> findEmployeeByDepartment(@Pram("department") String department)
+
+@Modify
+@Transactional
+@Query(value = "Update employee e SET e.salary=:salary where department = :department")
+public int updateSalaryEmployee(@Param("salary")Integer salary,@Param("department") String department)
+}
+
+@Service
+Public Employee{
+@Autowire
+EmployeeRepository empRepository;
+
+
+public int UpdateSalary(double salary, String department){
+
+return employeeRepository.updateSalaryEmployee(salary, department);
+}
+
+
+
+
+}
+
+@RestController
+public class Controller{
+
+
+@Autowired
+EmployeeService empService;
+@PutMapping(path = "/{id}/salary")
+public ResponseEntity<?> updateSalary(@PathVariable Integer id , @RequestParam double salary)
+int rows = empService.UpdateSalary(id,salary);
+if(rows > 0){
+return ResponseEntity.Ok("success")
+}
+else{
+
+return ResponseEntity.status(400).body("Employee not found");
+}
+
+}
+
+

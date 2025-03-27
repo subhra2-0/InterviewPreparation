@@ -1,0 +1,46 @@
+Q-Explain oops in real time?
+
+OOps is nothing but interaction of objects with each other in an  application.
+There are 4 pillars in oops actually - inheritance, polymorphism, encapsulation, abstraction.
+
+Encapsulation: It is something to bind the data and the method into a single unit(class)
+
+for eg: their is scenario of online banking systems.
+
+->For an online banking systems: we have an account  as base class and specific accounts like savings accounts and deposite accounts  will  be  extending this class.
+
+Encapsulation: in account class we will have account number and balance fields, where we can make the accountNumber and balance as private and give access to those methods using getter and setter methods rather than directly accessing the fields.
+
+Inheritance:It's a property where it will a class will inherit the properties and methods from parent class
+As we have Account as base class it will have it's sub class as saving account , current account which will inherit properties form account class.
+
+Polymorphism: It is ability of interface or method to perform in multiple ways.
+Suppose we have account as base class deposite method can be imposed in both savings and current account where as rate of interest will be seperate for seperate class.
+
+Abstraction: it will allow to hide the implementation details and will only expose the neccessary details to the client. Suppose we are calculation rate of intereset that method implementation should not be exposed to client.
+
+Q-What is immutability class?
+
+
+Q-Difference between concurrent HashMap vs HashMap?
+->HashMap is not thread safe if multiple thread can come and access and modify the objects.
+->HashMap is fail fast if we want to iterate over the map at the same time we delete a hashMap object
+it will throw concurrent modification exception.
+->External synchronisation we can make but example synchronizeMap it will lock the entire map make other thread to wait.
+->One null key and multiple null values are allowed.
+-> it is more efficient in a single threaded enviroment
+
+
+
+concurrentHashMap:
+->if we want to work in multithreaded env where multiple threads are accessing your objects and you don't want the incosistency in data then you can use ConcurrentHashMap.
+->>Locking mechanism in concurrent HashMap makes it more efficient to work in concurrent environment, where the 
+bucket is segrated in segment locking and once one segment is locked other thread still can operate on other threadds
+->concurrent hashMap is failSafe if we iterate over the map and try to update the element at the same time it won't throw concurrent modification exceptionl
+-> it doesn't allow null keys or null value to it.
+
+q-What is the difference between arrayList vs LinkedList?
+q-What is the difference between hashtable vs concurrenthashMap?
+
+Q-What is the difference between constructor injection and setter injection?
+

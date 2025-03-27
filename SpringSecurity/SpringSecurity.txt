@@ -1,0 +1,57 @@
+*Jwt is mostly used for securing Rest apis
+*Jwt follows a stateless mechanism.(The server will not store any information, the token will have all the information)
+
+
+->Authentications: it identifies who you are, while entering into the websites we give our credentials right, so that is basically authentication
+->Authorization: Process of identifying the person if he is allowed to do a certain operation or not.
+->Grant authority: bunch of permission allowed for a user like update delete create.
+->Rolese: Group of authority given to a user like Admin-can create, update , retreive data from an application, 
+where as only user can retrieve data from the application 
+
+
+Jwt-- Jwt stands for json web token , typically used for transmitting data between client and server securely.
+
+A jwt is basically a string consisting of 3 parts: Header, payload, and signature.
+
+->The header consist of the token type and the algorithm being used.
+
+->The second part of the string consist of payload and the claims(are the additional info about the users).
+
+->To create a signature you have to take the encoded payload, encoded header along with the algorithm specified in the header and sign it.
+
+
+Stateful security: The stateful system maintains the session state on the server. it will keep the client details in the session storage.
+For every request to the server a session id will be generated and it will be given to the client and the client details will be stored in session storage, so for every request the client sends the session id and server cross check with stored session data.
+
+
+Stateless security:
+A stateless system doesn't store a session state rather than that it all the information is embedded inside the client token itself.
+So while authenticating the server will generate a token that token is being used by client to validate the server using signature rather than cross referencing the stored session.
+
+Advantages:
+->scalability is possible in stateless security for a distrubuted system where as the scalability is not possible for stateful security.
+
+Stateful:
+for eg: in an online banking system we are performing many senstive operations like transaction and withdrawals and etc. suppose the request comes to online banking systems the server will generate a session id and store the session id and session related data in a secured data base and it will give the session id to the client.
+Once client get the session id it will use the session id to authenticate where the server will cross reference with session id with it's stored session data.
+
+Stateless:
+suppose we are a third pary app and we want to call instagram api for the number of user who has done the post in insta feed, if we want to call the instagram api first we need to authenticate and instagram will send us a jwt token which will have all the information regarding the user, passing the token in the request header we can have the accessbility to call the api.
+
+stateful: Critical for sensitive application like banking operation , where we session is fully controlled by the server
+
+Stateless: for less critical application like calling an api where session is depends upon the token expiration.
+
+Implementation:
+->jwt authenticationEntryPoint: It's an entry point for the request where we it will authenticate if the user is valid or not or else from their itself it will throw exception.
+->create jwt token helper: create a jwt token helper to manage the token , validating it , setting the expiry time and etc.
+->jwtAuthentication filter extends onceRequestFilter it will intercept the requests.
+
+Explained in a very short way:
+*One login api will be there, once we pass the user credentials , it will return the token response
+*Once we get the response while sending the request we can pass the token in the header.
+*We will get the jwt token in the request and will check the token is in proper format or not.
+*Once we get the token we will validate the token using jwtHelper class.
+*Once we validate the token , we will get the user details from the token
+*Once we get the userDetails from the token theirs a method called LoadUserByUserName
+*And we can set the spring security for the user.

@@ -1,0 +1,177 @@
+Interview all coding questions:
+--->java8
+->use HashMap to find department with list of employee.(also do it with insertion order).
+->Given a list of integers seperate odd and even numbers?
+->Find the duplicate element in integer or string? both conventional and java8
+->find the occurance of a string. java8 and conventional way
+
+->find the occurance of a duplicate element.
+->5)Get the list of all products that belongs to "Book" category and product price > 200 using java8 features.
+->reverse a string.
+->Find the second largest element
+->rotation of a string.
+->Find the number greater than 50 and find the average?
+->Find the prime number using  java8?
+->Find the second largest number?
+->Find the duplicate(Integer,String,charater).
+->Find the occurance(Integer,String,character).
+
+-Find the second largest using java8
+-Find the prime number using java8. 
+->Employees name map to particular department.
+->Filter employee department and the list of employees under particular department.
+->Find the player jersey odd number using java8.
+->Find the sum of subArray from nested array.
+->Filter the odd and find the sum.
+
+DsaQuestions:
+->Fibonacci series..
+->Check if a string is palindrome or not
+->bubble sort
+->recursive bubble sort
+->mergeSort.
+->Check if an integer is palindrom or not.
+->find all the common elements from 3 sorted array.
+
+->find the king element in an array. King element are those that are larger than all the elements toward their right side.
+->count sum pair.
+->all the sum pairs.
+->First sum pairs.
+->You are given an array arr[] consisting only of non-negative integers, and a target value target. The task is to find the first continuous subarray whose sum equals the given target. You need to return the 1-based indices of the leftmost and rightmost elements of this subarray. If there is no such subarray, you should return a message indicating that no subarray was found
+Strings:
+Paranthesis checker.
+Explain this question with an array example
+->Binary Search.
+->Balanced paranthesis.
+->Find the reverse array in a place
+->Find the second largest element
+->Find the third largest.
+->Find the second largest.
+->Find the second minimum.
+->Find the max and min element
+->Check if an array is rotated array or not?
+->check if an array is rotated to a given target no.
+->reverse a string in place.
+->Merge two arrays into a single sorted Array.
+->Flatten the nested array.
+->Check if an array is mountain array or not?
+Given an array arr[]. The task is to check whether it is a mountain array or not. A mountain array is an array of length at least 3 with elements strictly increasing from starting till an index i, and then strictly decreasing from index i to last index. More formally arr[0] < arr[1] < arr[i] >arr[i+1] > arr[i+2] > arr[N-1]. 
+
+Examples
+Input: arr[] = {4, 4, 3, 2, 1}
+Explain the code briefly
+Output: false
+Input: arr = {1, 2, 3, 4, 9, 8, 7, 6, 5}
+Output: true
+->Move all zeros in an array to the end.
+->common elements in 3 sorted Array.
+->Check if an array is sorted or not.
+->Check if Strings are anagram or not.
+->rotate an array to right till k target;
+-> check if an array is a rotation of itself.
+->flatten nested hashMap.
+->
+
+
+
+
+
+
+
+
+
+Delloite Interview Questions:
+->Check if a csv file string has valid pincode or not.
+->Sql questions: find the second largest, find the duplicates, find the count of department wise employee,remove the duplicate, update query, add coloum query.
+
+
+
+
+Accolite Interview:
+
+Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+ 
+Example 1:
+Input: nums = [1,2,3,1], k = 3
+Output: true
+Example 2:
+Input: nums = [1,0,1,1], k = 1
+Output: true
+Example 3:
+Input: nums = [1,2,3,1,2,3], k = 2
+Output: false
+ 
+Given a String, find the first non-repeated character in it using Stream functions?
+ 
+String str = "aabcbdee"
+ 
+String str = "aabcbdee";
+
+Map<Character,Long> maps =str.chars().mapToObj(x->(char)x).collect(Collectors.groupingBy(x->x,Collectors.counting()));
+
+// System.out.println(maps);
+for(Map.Entry<Character,Long> elements : maps.entrySet()){
+if(elements.getValue()==1){
+
+System.out.println(elements.getKey());
+break;
+
+}
+
+}
+
+}
+ 
+Employee : String name, List<String> emails
+ 
+public final class Employee {
+private final String name;
+private final List<String> email;
+public Employee(String name, List<String> email) {
+this.name = name;
+this.email = new ArrayList<>();
+
+}
+public String getName() {
+return name;
+
+}
+public List<String> getEmail() {
+return Collections.unmodifiableList(this.email);
+
+}
+
+}
+ 
+public final class Employee {
+private static Employee employee;
+private Employee() {
+
+}
+public static Employee getSingleTonInstance() {
+if (employee == null) {
+synchronized (Employee.class) {
+if (employee == null) {
+employee = new Employee();
+
+}
+
+}
+
+}
+return employee;
+
+}
+
+}
+
+ 
+
+
+
+
+
+
+
+
+

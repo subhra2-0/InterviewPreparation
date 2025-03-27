@@ -1,0 +1,24 @@
+int arr[] = {1,2,3,4,5,6,8,8,10};
+Set<Integer> unique = new HashSet<>(); 
+for(int num : arr){
+
+if(unique.add(num)){
+
+Sytem.out.println(num);
+
+
+}
+
+
+}
+
+
+List<Integer> num = Arrasy.asList(arr);
+Set<Integer> = num.chars()mapToObj(x->(char)x).filter(x->unique.add(x)).collect(Collectors.toSet());
+
+
+String str = "Hii hello how are you doing Hii hello how are you doing";
+
+List<String> list = Arrays.asList(str.split(" "));
+
+List<String> list = list.stream().collect(Collectors.groupingBy(i->i,Collectors.counting()));

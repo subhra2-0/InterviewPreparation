@@ -1,0 +1,50 @@
+KPMG Interview questions:
+
+->find the king element in an array. King element are those that are larger than all the elements toward their right side.
+->count sum pair.
+->You are given an array arr[] consisting only of non-negative integers, and a target value target. The task is to find the first continuous subarray whose sum equals the given target. You need to return the 1-based indices of the leftmost and rightmost elements of this subarray. If there is no such subarray, you should return a message indicating that no subarray was found
+
+
+
+
+
+
+Strings:
+Paranthesis checker.
+
+Explain this question with an array example
+->Binary Search.
+
+
+class Animal { 
+    public void voice(String voice) { 
+        System.out.println(voice); 
+  
+    } 
+    Animal(String voice) throws IOException { 
+        System.out.println("Parameterized : IOException"); 
+    } 
+    Animal() throws Exception{ 
+        System.out.println("Default : Exception"); 
+    } 
+} 
+class Dog extends Animal { 
+    Dog() throws ArithmeticException{ 
+        throw new ArithmeticException(); 
+    } 
+} 
+ 
+Write a Program to check whether the Integer is Palindrome or not with out converting it into Integer
+ 
+Find the common element in 3 sorted arrays.
+ 
+I/P:- 
+int ar1[] = { 1, 5, 10, 20, 40, 80 }; 
+int ar2[] = { 6, 7, 20, 80, 100 }; 
+int ar3[] = { 3, 4, 15, 20, 30, 70, 80, 120 }; 
+
+->Find the second smallest element.
+
+PostMapping and putMapping
+what exception it will throw if we update a unique key again using postMapping.
+ 

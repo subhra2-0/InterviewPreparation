@@ -1,0 +1,41 @@
+
+
+
+class Employee{
+private int id;
+
+}
+
+
+List<Employee> emps = new ArrayList<>();
+
+Map<String,List<Employee>> empMap =emps.stream().collect(Collectors.groupingBy(x->x.getDepartment(),Collectors.toList()));
+
+empMap.forEach((x,y)->sout(x+" : "+y));
+
+find employees with department
+
+
+int add(int x,int y){
+return x+y;}
+float add(intx , inty , int z){ // compile time error.
+float a=x;
+float b=y;
+return a+b;}
+ 
+main(){
+float res= add (4,5);}
+
+select emp_salary from emp_table orderby emp_salary desc limit(1,5);
+
+// 
+
+suppose we give a put and patch call and the trasaction is failing in one db it is updating and the other db it failed how you will handle the scenario.
+
+
+
+
+
+
+
+

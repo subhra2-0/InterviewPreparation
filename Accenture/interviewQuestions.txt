@@ -1,0 +1,213 @@
+Q-Difference between collection and collections?
+Collection: It  is an interface to perform operation on colletions of objects like add, remove, contains.
+it gives us methods like add, remove, contains, size().
+
+Q-What if we insert an element in linkedlist between 10millions element which will perform faster as compared to arrrayList?
+Ans- if we compare linkedList if we gonna insert an element in between we to traverse the nodes, if suppose we have the node at 5 millionth position we have to do node traversal till 500 millionth position.
+where as in arrayList--> also index based searching is their but inserting an element in between will have to move or do shift wise operation for other elements.
+
+if you ask for efficiency I'll reccoment arrayList as on every index we will be having the object memory overhead will be less as in linked list we are dealing with pointers manipulation where a node will be having the address of next node and the previous node.
+
+
+Q-HashMap vs HashTable?
+HashMap:
+HashMap is not synchronized in nature.
+Multiple thread can access simuntenously to hashmap object which makes it non-thread safety.
+For the above reason it's operation is faster.
+only one null key is allowed, and multiple null values.
+
+
+
+
+HashTable:
+where as HashTable is synchronized in nature.
+at one time one thread can access the hashTable object which makes it thread safety.
+For the above reason it's performace is slower.
+null in both key and values are not allowed it will throw null pointer exception.
+
+
+*Note: if you want to synchronize hashMap, we have the option of concurrent hashMap which is now widely use in place of hashTable, which gives you better performance, and to get grained controll concurrency controll
+
+Q- Why would you using HashTable lead to potential issues in highly concurrent environment even though it's syncronized?
+
+
+
+
+
+*Concurrent Collections:
+In Concurrent hashMap, in java7 we had segment based locking,
+if we have a read or write operation it will perfrom on one segment it won't lock the other segments make them available for other operations.
+
+after java8:
+We have compare and swap scenario where the locking will happen only in case of collision or resizing.
+suppose we have
+==========================================================================================================
+Concurrent  collection:
+It  was  introduced , if  you want to work in  a thread-safe  environment  ,  where multiple thread  is  accessing your  objects   still  their  is no  data inconsisency  then concurrent  collection is the  best  approach   with  
+an efficient  way.
+Concurrent package has:
+CopyOnarraylist, concurrentHashMap...etc.
+
+CopyOnArrayList is the example of fail safe iterator, where we can modify a collection along with traversing it and it won't throw any concurrent modification exception.
+
+*Collections provide methods such as SynchronizedList, SynchronizedMap, SynchronizedSet those provide thread safety 
+but problem is they capture but the problem is they capture lock on the entire collection even for reading which decreases the performance.
+
+Concurrent Collections:
+*HashMap is a failFast iterator so when we iterate over the map and try to modify the hashMap object then we get a 
+concurrent modification exception
+
+*Where as concurrent hashMap is failSafe When we iterate over the map and try to modify the hashMap object then we won't get Concurrent modification exception.
+
+Example of concurrent classes in java are:
+-> CopyOnWriteArrayList
+->CopyOnWriteArraySet
+->Concurrent HashMap
+
+
+Doubt Question :
+If hashMap is failfast when we iterate over it and at the same time we try to get the value of a key it will throw 
+concurrent modification exception, then how come multiple thread can access and modify the object?
+
+
+
+Q-If hashTable was already their why then Concurrent collections?
+Ans: In hashtable if their is a write operation to be performed then it will lock the entire map which will make the other threads to wait , once the lock is released other thread can operate, which makes latency or we can say 
+decrease in performance. where as in concurent collection bucket wise lock happens or according to concurrency level segment locking happnes which allows other thread to operate on other parts rather than sitting idle.
+
+Q-Can multiple thread read from the bucket simuntenously?
+Ans: yes, for reading thread doesn't need lock.
+
+Q-Can multiple thread read and write simuntenously?
+Ans: no once a write operation is performed on a bucket it will go on hold another operation cannot be continued.
+
+Q-Why null not allowed in concurrent hashMap but allowed in hashMap?
+Ans: Their will be ambiguty rt?
+supppose we have map:
+
+Map<Integer,String> ambMap = new HashMap<>();
+
+ambMap.put(1,"abhijit");
+ambMap.put(2,"suraj");
+ambMap.put(3,"Aswin");
+
+if(map.contains(1)){
+return map.get(1);
+}
+
+Suppose their are 2 threads on thread check if the key is present or not and fetch the value, meanwhile the other thread comes and delete the key in map , so their will be an ambiguty either the value stored for this key in null or their is no key.
+
+but it is not in the case of hashMap as hashMap is while one thread is checking the key and fetching the value of the respective other thread cannot delete the key in map , it will throw concurrent modification exception.
+as far I know their while traversing node their is a check modCount != expected modCount then it will throw concurrent modification exception.
+
+
+*Internal working of concurrent hashMap?
+If thread t1 and t2 can read data from same or different bucket of hashMap it is not a blocker.
+If thread t1 is writing or update on a bucket on the same bucket we cannot read , it will be lock although other 
+operations can be carried out on other buckets.
+-> 2 threads can write or update on the same bukcet it is also a blocking operation.
+
+
+q-How to make a class having arrayList immutable?
+Ans: ->First we can make the class as final so it cannot be make any further subclasses.
+     ->Make the fields inside the class as private and final hence the state cannot be modified of the field.
+     ->initialize the fields and arrayList via constructor and perform a deep copy of the list.
+     ->Don't allow setter methods for accessible only use get methods
+     ->if there's a mutable object like list, map and etc return a view of unmodified list using Collections.unmodifiedList so that the list cannot be
+       changed.
+
+Q-In hashSet what will happen if the object value has the same hashcode but different hashImplementation?
+Ans: So hashSet internally uses hashMap, when an object hash value is calculated it is placed in a buket , if it has the same hasvalue then object value is compared using equals methods if equals is true it won't add method as unique elements are only allowed but if the equal is false then it will add the element in same bucket, the scenario if the hashcode is different then both object having equals value will be placed into different buckets resulting in improper behaviour of hashset.
+
+
+Q-what is the purpose of a constructor? can a constructor be static and final?
+Ans: The purpose of a constructor is to initialize object. 
+No a constructor cannot be static as static method belongs to class and constructor is not called on class level where as constructor is for instantiating the class objects.
+No a constructor cannot be final as it cannot inherited as constructor is tied to a specific class.
+
+q-Why constructor cannot  be  inherited?
+Ans: Constructor sole purpose is for initialization of objects as it being tied to a specific class, what if the subclass has different fields then it doesn't make sense of inheriting the constructor.
+
+Q-If a constructor cannot be inherited can it be still called in a subclass?
+Ans: Yes using super keyword we can call the parent constructor but the super keyword should be the first statement in child constructor.
+     if in a child class a constructor is defined we must declare a no args consturctor in parent class otherwise it will fail to compile.
+     now thoo in child super key word is not present it will automatically call the no args costructor of parent class.
+
+
+*Note: if a child class constructer is their with fields, it's mandatory to have super class default parent constructor.
+       or else using super in child constructor call the fields in parent constructor.
+
+Q-Can you create an object of an abstract class?
+Ans: No, we cannot create an object of abstract class,but we  can create reference of the abstract class and assign   it  in a concrete class.
+
+What is abstract and interface in java?
+Ans: Interface is to standardise the behaviour where as abstract class is to generalize the behaviour.
+Suppose we are doing a upi transaction from hdfc to sbi , the upi is a contract where respective banks have implemented it.
+In abstract suppose in a bank we deposite money , or we take loan this behaviour are abstraction.
+*Abstract class is partial abstraction
+*Where as interface in complete abstraction.
+
+->In Abstract class we can have abstract method as well as method with body, where as interface we can have only abstract method, but after java 8 we have static and default method.
+
+->In abstract we don't have flexibility of multiple inheritance, where one abstract can only extend one abstract call, where as in interface we have multiple inheritance where once interface can implemenent multiple interface.
+
+*Coupling and cohesion:
+Cohesion: It means the method and properties in a class are related to each other.
+
+High cohesion: In a class the methods and properties are related to purpose of the class.
+For example: We have a car class where the methods we have such as stopEngine and startEngine.
+
+Low cohesion: In a class the methods and properties are not related to the purpose of the class.
+for Example: We have a car class where the methods are readData,userEntertainment, and etc.
+
+
+Coupling : it means the dependency of class upon each other, if 2 classes are interdependent on each where modifying one class can affect the other is called tight coupling.
+
+Loose coupling: it 2 classes are loosely coupled with eachother where modifying the class won't affect the other class.(Constructor injection).
+
+
+Q-Why we want use constructor injection?
+Ans: 
+->For constructor injection all the dependencies are available at the time of constructor initialization and explicitly the dependency we want we can use it in the constructor.
+
+->if we passing the dependency in constructor we can make it as final so that object created will be an immutable object.
+
+->Write test case will easier we mock and stub the dependencies in the constructor of the class.
+
+
+*So We have to focus on minimzing coupling and maximizing cohision makes our code more focused, logical and cleared,
+together the combination of both makes our code scalable , robust and easy to maintain.
+
+*Spring vs Spring boot?
+Q-Benefits of springboot over spring:
+->Dependency resolution:
+Ans: Suppose we are working to build an application using spring and hibernate, we have to list down all the dependencies that integrate spring and hibernate, and we need to manage the version also for the compatibility purpose.
+but
+in spring boot only 2 dependencies are enough: spring data-jpa which will support hibernate and spring starter-web which will include all the dependencies to build restApi with spring mvc and the parent version of the pom will manage all the dependencies automatically.'
+
+Spring-starter-web has: embedded server, spring mvc to handle http request, jackso for json proeccessing.
+->Minimal Configuration: In spring we do xml based configuration to enable dataSource, sessionFactory, TransactionManager and all stuff , but in spring boot we get rid of this xml based configuration, we have properties file where we can define the data source.
+based on the libraries in classPath and application properties spring will do automatic configuration of bean that is required by the application.
+->In spring we have  external server where will be deploying the application but in case of spring boot we have embedded tomcat server.
+->in spring boot using actuator we can achieve health metrics but in spring we need to add the customized framework, or use 3rd party.
+
+What is  spring boot actuator?
+Ans: It provides production ready features such health check, metrics check and applicaton info.
+It gives you the set of end points which expose the vital application data, remote management and monitoring.
+how to enable it, we can add the dependency and properites regarding in the applicaton.properties.
+
+Q-Caching in  Spring boot:
+Caching is a way to store frequently used data in the memory to improve application performance by reduce the need of making an expensive database or remote service call.
+
+
+*First  we need to enable caching by using enable caching in the main spring boot application,
+which gives features such as cacheable, cacheble put, cachebale evict.
+
+Cachebal= it will get the result for you if there's any existing data in cache.
+Cacheble update= it will update the data for you in the cache.
+Cacheble evict = it will delete the result for you in the cache.
+
+
+what is stack overflow exception?
+Ans: In a memory region used for managing function call or local variable, when it runs out of space then we face stack overflow exception.
+I remember when I was writing a code merge sort using recursive function I forgot to write the base condition and the function keep on call itself where I go the stack overflow exception.

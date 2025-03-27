@@ -1,0 +1,31 @@
+What is oops concept?
+Oops is an object oriented programming language which is based on objects rather than procedure and functions.
+Object oriented means everything revolves around objects.
+
+OOPs concept: 
+->Inheritence
+->Polymorphism
+->abstraction
+->encapsulation.
+
+String str = "Hello how are you, hope you doing good";
+
+List<String> str = Arrays.asList(str.split(""));
+List<String,Integer> = str.stream().collect(Collectors.groupingBy(i->i,Collectors.counting()));
+
+
+Character ch= "agbhucjsfs";
+
+ch.chars().maptoObject(x->(char)x).collect(Collectors.groupingBy(i->i,Collectors.counting()));
+
+String = "hii how are you";
+
+List<String> str = Arrays.asList(str.split(" "));
+str.stream().collect(Collectors.groupingBy(i->i, Collectors.counting()));
+
+ch.chars().maptoObject(x->(char)x).collect(Collectors.groupingBy(i->i,Collectors.counting()))
+
+
+quick sort algorithm, sortings
+reverse a string
+

@@ -1,0 +1,111 @@
+
+
+Wissen infoTech:
+
+public class Main
+{
+	public static void main(String[] args) throws Exception{
+	    Object[] array = { 1, 2, new Object[]{ 3, 4, new Object[]{ 5 }, 6, 7 }, 8, 9, 10 };
+	    
+        Integer[] flattenedArray = flatten(array);
+        
+        System.out.println(Arrays.toString(flattenedArray));
+	}
+	
+	public static Integer[] flatten(Object[] inputArray) throws Exception {
+	    
+	    for(int i =0 ; i<arr.length ; i++){
+	        
+	    }
+	}
+	
+}
+
+
+flatten the above array:
+
+
+merge two array into a single array:
+/******************************************************************************
+
+Given two sorted arrays, the task is to merge them in a sorted manner.
+
+Input: arr1[] = { 1, 3, 4, 5}, arr2[] = {2, 4, 6, 8} 
+Output: arr3[] = {1, 2, 3, 4, 4, 5, 6, 8}
+
+Input: arr1[] = { 5, 8, 9}, arr2[] = {4, 7, 8} 
+Output: arr3[] = {4, 5, 7, 8, 8, 9} 
+
+*******************************************************************************/
+import java.util.*;
+
+public class MergeArraysDemo{
+    
+    public static void main(String[] args) {
+        int arr1[] = {1, 3, 5, 7};
+
+        int arr2[] = {2, 4, 6, 8};
+
+ 
+        int arr3[] = mergeArrays(arr1, arr2);
+ 
+        System.out.println("Array after merging - " + Arrays.toString(arr3));
+    }
+       
+    public static int[] mergeArrays(int[] arr1, int[] arr2) {
+    int size =arr1.length + arr2.length;
+    int temp[] = new int[size];
+     
+     for(Integer elements : arr1){
+        temp.add(elements);
+    }
+    
+    for(Integer elements2 : arr2){
+        temp.add(elements2);
+    }
+    
+    mergeConcatArray(temp);
+        
+        
+    }
+    
+    
+    public static List<Integer> mergeConcatArray(int[] arr){
+        
+        int left =0;
+        List<Integer> temp = new ArrayList<>();
+        int left =0;
+        int mid = (left + right)/2;
+        int right = mid+1;
+        int end = arr.length-1;
+        
+       
+        
+        while(left<=mid){
+            if(arr[left] > arr[right] ){
+                temp.add(arr[left]);
+                left++;
+            }
+            else{
+                temp.add(arr[right]);
+                right++;
+            }
+            
+            
+            for(int left =0 ; left<=end ; left++){
+                temp.add(arr[left]);
+            }
+            
+        }
+        
+        return temp;
+        
+        
+        
+        
+        
+        
+    }
+    
+}
+

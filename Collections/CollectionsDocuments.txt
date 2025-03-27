@@ -1,0 +1,272 @@
+Q-Difference between collection and collections?
+Collection: It  is an interface to perform operation on colletions of objects like add, remove, contains.
+it gives us methods like add, remove, contains, size().
+
+Where as colletions is a utility class which gives us static method to perform operation on collections of object.
+like sort(), reverse(), max(), min().
+
+
+
+
+
+
+q-What is the difference between array and arrayList?
+Ans: 
+Array:
+->Array is static in size.
+->Array we can store both primitive and objects.
+->Array is comparatively faster because of fixed size.
+->In Array you have to manually handle adding, removing and searching., by shifting operation.
+->Elements are contained in adjacent memeory locations.
+
+ArrayList:
+->It is dynamic in size, it initializes with size 10 but it increases it capacity as you start increasing the size.
+->We cannot store primitive types, it only allows objects.
+->Where as array list because of resize operation it bit slow
+->ArrayList provide many inbuilt methods like add(), remove(), contains().
+->Elements are not present in adjacent memory locations here.
+
+
+
+What is the difference between ArrayList and vector?
+ArrayList:
+->ArrayList is not synchronized,programmer prefer ArrayList over vector because ArrayList can be synchronized explicitly using Collection.SynchronizedList.
+->As it is not synchronized multiple threads can simuntenously execute, which makes not thread safe
+->Since it is not thread safe, multiple threads can access the object it makes the operation faster.
+
+
+
+ArrayList use in your project:
+In our project we used to have message, when we hit request right so our payload headers are embeded in message
+so from that message we can extract the payload values right, payload we give customer number, reference id , messagecode and etc. so this thing we can store in list and make use of it.
+*Thread safety it provides data consistency. batch running at the background or several request won't get modified.
+
+Vector:
+->Where is vector is synchronized.
+->As it is synhronized , multiple threads.
+->Since it is thread safe one by one thread can access the object it makes the operation bit slow.
+
+
+
+Q-What is the difference between LinkedList and ArrayList?
+Ans:ArrayList:
+->ArrayList internally uses dynamic array to store elements.
+->where storing and adding the element the element is slower in ArrayList as it contigous memory,
+if you remove or element bitwise shifting is required.
+->Accessing and storing elements in Arraylist is faster.(search operation) index based searching
+->Memory overhead is less, as the index contains the actual object.
+
+
+LinkedList:
+->Linked list internally uses doubly linked list to store elements.
+->Manipulation in linked list is faster, as we have to manipulate the pointers to store and add the elements.
+->Where as accessing and storing element is slower in linked list as it will be using node traversal to access the elements.
+->Memory overhead is more, as each node will storing the address of previouls node and next node.
+
+
+What is hashCode() method?
+Hashcode() methods is used to generate the hash value of an object,It improves the performance of hashbased collection.
+using this hash value we store the object in hashMap,hashSet , hashtable
+corresponding to a key we generate a hashValue and it will refere a bucket and put into a bucket where we will have key value pairs.
+
+
+Q-Why comparable and comparator?
+We need comparable and comparator because we need sort the custom object, the utility method what array gives for sorting we can sort primitive types.
+But not the custom object.
+
+Comparable is used only for single logic sorting where we have change the source code by implementing comparable interface and implementing compareTo method
+where at one time we can sort one thing eg; id, name or salry...etc.
+
+where as in comparator, we used multiple logic sorting creating another class and implementing compartor which implement compare method with 2 objects parameter we can create different different comparator like age compartor, id comparator etc for sorting.
+
+
+
+Q-What is  equal and hashcode contract?
+
+->If 2 objects are equals according to Equals(Object O) method than the hashcode for both the object must be same.
+->If the hashcode of 2 objects are same not neccessarily both the objects will be same.
+
+
+*What if equals method is overriden and hashcode in not ovveriden?
+->Then it will break the contract which says, if two objects are equal than their hashcode must also be equal.
+In hashbased collection we can find the scenario, if two objects are equal than their hashcode not equal we can have duplicates in set and we can incorrect
+retrieval from maps.
+
+
+Q- What is fail-safe and fail-fast iterator?
+*Iterator is an interface that provides a way to traverse through a collection of objects.
+*Concurrent modification exception occurs when you modify the collection while traversion on it.
+
+FailFast iterator:
+Supporse one thread is traversing on the collections of objects and the and another thread is try to update the element for eg adding, removing the same
+collections of object than Concurrent modification exception will occur.
+
+Fail-safe: it won't throw the concurrent modification exception ,
+unlike the fail-fast it will traverse over the copy of the collection of objects.
+It will consument more memory as it will make a clone of the collection of the objects.
+
+
+q-What is dictonary in java collections?
+->It is the parent class of hashtable
+->Represents keyPair elements.
+->null key and null value both are not allowed.
+->duplicate keys are not allowed.
+
+
+q-Garbage collection in java?
+-> It is a background process, when the object is created it get store in the heap memory, the object which are no longer used by application, 
+the jvm automitacally remove those object hence helping developer for freeing up the mm space.
+
+
+Memory leak issue:
+It happens when we are holding on to some reference objects in the heap memory which no longer used by application, the jvm takes this object as active objec, hence not removing which caused outofmemeory error.
+
+creating too many objects without cleaning them.
+
+using external resources like file handling and network connection without release them, eg: database connection, if we don't close the connection
+it will use up unnescessary memory.
+
+Q=How to prevent memeory leakage issue?
+->Setting the object reference to null which are unnecessarilty active and using memory space.
+->making sure to use the existing objects.
+-> closing the external resources connections, and making use of try resource block for proper connection handling.
+
+Finalize method:
+->Finalize method is called on an object before the object is garbage collected.
+->When an object is tied up to an external resource , for eg: the object is connected to db connection or to file where it is reading from file.
+the finalize method will close that connection and then will be garbage collected.
+after java18 finalize method is deperecated we are using try resource as an alternative.
+
+Q= What are the ways to synchronize list, set and maps?
+Answer: Collection class provides static methods to sycnronize list, set and maps.
+eg:
+Collections.synchronizedList();
+Collections.synchronizedSet();
+Collections.synchronizedMap();
+
+These static method are used for synchronization and to iterate over it please make sure to use a synchronized block.
+
+
+Q-Iterator vs ListIterator?
+
+Iterator:
+In Iterator can traverse element in one direction.
+This method is available for all collections.
+Read access to elements.
+cannot retrieve index.
+
+
+
+
+InListIterator:
+here we can traverse in biderction.
+This method is available for only collection with implements list.
+Read and write access elements(We add element using add method).
+Can retreive index with nextIndex and previousIndex.
+
+
+
+q-How does HashMap works internally?
+
+
+HashMap properties:
+->HashMap store elements in key value pairs.
+->HashMap provide fast access element, which means the retrieval and insertion perform very fast.
+->support null keys and null values, but only one null key is allowed.
+->not ordered , the ordered is not preserved in hashMap.
+->duplicate keys will override with the previous key values, but duplicate values are allowed.
+->Thread unsafe: HashMap is not thread safe , if multiple thread can access the element it may cause data inconsistency.
+
+
+
+
+HashSet:
+->HashSet internally uses hashMap.
+->If you don't want to maintain insertion order and want unique elements.
+->Performance is better as compared to linkedHashSet.
+->it allows one null element.
+->It uses equal and hashcode method to compare objects
+
+
+
+
+
+LinkedHashSet:
+->LinkedHashSet internally uses linkedHashMap
+->If you want to maintain insertion order and want unique elements.
+->Performace is slow as it internally uses linkedList.
+->It allows one null element
+->It uses equals and hashcode method to compare objects
+
+
+
+
+
+TreeSet:
+->TreeSet internally uses TreeMap.
+->if you want to do sorting using comparator , custom sorting along with unique elements.
+->it's performace is fast as compared to LinkedHashset except insertion and retrieval as it will sort element first and then it will perform the opeartion.
+->It allows no null elements
+->It uses compare and compareTo method to compare objects.
+
+What is Permspace and metadataSpace.
+Permspace is a area in heap memory which is used to load all the metadata, metadeta in the sense all the class
+properties and object properties. after jdk 1.8 permspace is replaced by metadataspace.
+Metadata space is a native memory(proccess memory) limited by host operating system.
+by introduction of metadata space it helps in reducing the out of memory error.
+
+
+
+Enumeration vs Iteration?
+Ans: 
+->Enumeration is to traverse all the legacy classes like vector, stack, hashtable
+->in enumeration while traversing all the elements if we modify the elements it won't throw 
+concurrent modification exception, because it is fail safe, hence not secure.
+->it has only read-only option. (hasmoreelement, hasnextelement)
+
+
+
+Iteration:
+->Iteration is used for all collections.
+->While traversing elements if we modify elements it will throw concurrent modification error which makes it failfast, tho we can make it fail safe by using copyofArrayList.
+->It has both read-only option and write-only option (hashNext,next,remove).
+
+
+q-Difference between HashMap vs HashTable?
+HashMap:
+->HashMap is thread safe, hence multiple thread can modify the object in map.
+->As it is not thread safe, threads are not required to wait hence the performance is relatively faster.
+->it can allow one null key and multiple null value.
+
+
+HashTable:
+->HashTable is thread safe, hence once thread execution is completed other one will start execution.
+->As it is thread safe thread has to wait for the operation to complete hence bit slow in performance.
+->it doesn't allow any null key or null value.
+
+What is the difference between stack and queue?
+Stack:
+->in stack only from one end deletion and insertion is possible.
+->push and pop operation
+->Lifo
+
+
+
+
+queue:
+->In queue from both end we can perform this operation, addition and insertion.
+->enque and deque operation.
+-fifo
+types- circular queue , priority queue and double ended queue
+
+
+
+*TreeMap:
+If you want you collection to be order in ascending order.
+If you want in customized collection than you can implement Comparable or compartor for customizing sorting. 
+
+
+	
+
+
+

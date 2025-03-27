@@ -1,0 +1,121 @@
+
+Introduction:
+hii, I am subhrajit Barik, I belong to odisha, currently I'm  working as junior sde in maveric system limited, I have all total of 3 years experience. with 
+technologies such as java, springboot and microservices and my roles and responsibilites involves managing the code, resolving the bugs and defects in the code, application side testing, and end to end to deployments of the components.
+
+Explain about your project:
+So actually we are providing alert notification for the customers based on singapore and hongkong, uk and uae.
+so we have 2 regions one is apac which is for singapore and hongkong, the other one is emea which is for uk and uae.
+so we provide services in 3 ways pn-> push notification, sms and email.
+so if we sending email we will be sending based on mail id, if it's push notification it is based on device type and if it's sms it is based on phNumber.
+So I have actually worked on 3 kinds of flow that is one to one communication flow, batch flow and reverse feed.
+one to one flow- api -cops-> nginx/psg-> dch.
+Batch- kafka->cops-nginx/psg->dch
+
+so let me explain you how the flow works, 
+we are not getting any calls from the frontend, we are getting calls from a channel called cops, cops is kinda team they send response or template to our layer which is dch we are processing that template and sending it to the moengage vendor , and we are not directly sending it to moengage vendor, we have routing service called nginx through that we are sending the request to moengage and from their we are getting back the acknowledgement to our services.
+acknowlegement in the sense if the email/sms/pushnotifications are succesfully delivered or not.
+So it is like one to one communication so the alert notification what comes it is processed by rqpr and it is send to emsb and emsb send it to the 
+moEngage.
+
+Now the other flow is batch flow:
+we will be using kafka flow here.
+similarly the cop will directly push the temlplate or payload to dch and in dch we have a component called eml it will process the payload,
+and we will configure the kafka topic at our end and send the data to kafka topic and it will push to moEngage via ssg/psg.
+Here we will get the data batchwise, if in one day 2 batches are running means at that particular time we receiving the data.
+
+And another flow is ads, suppose the email is delivered we need to make sure if the email is successfully delivered or not we will be getting it as files where it will have the status of the email is delivered or it is not delivered those recode we will be pushing into the db and will be sending back to cop team via kafka.
+
+channels we have:cops,cth,cta
+
+*cops team which send us the template they don't have the device details, so we make a call to citi alert api to get the device details.
+
+in schemas we have xsd files, these files are given by the governance team, it has all the request and response in xsd files this is created based on swagger files, which we recieve it from the buisness team. we get the xsd create the pojo and configure it in the microservices.
+
+
+Understanding the flow of component.
+we will be mentioning the uri in config files and will be mentioning the flow class , it will act as an entrypoint as a controller and will define the flow class for further operations.
+in flow class we have uri, the method name eg: post,get and etc, flow channel class and request entity class. 
+For every component we have a config component there itself env wise configuration we have done we have yml files where we have mentioned the uri/api for the application, and db queries to be executed.
+from flow further operation will be executed to service class, and in method in service what we writting we have parameter as message in the method, in message we get headers and payload what we sent in soap(we have headers and payload). for customized header will have enrich headers that we will be using in native query.
+we have one jpaIntegration flow one in-built method which call the db query operation which we would have configured in yml files.
+the db connectivity property and kafka topic configuration and all such things we storing in another config called common.config which is common to all the application.
+if we want to create a new table or alter a table we have a ddl component their we write the query and deploy it to certain environment once deployed it will create the table or modify the coloumn accordingly.
+
+explain one changes you did for the project:
+So their was one scenario where we were calling to a another db for cutomer details the code was fine until like they migrated to java17 because of some jakart issue , so what it was happening  the instace which was getting the customer details from db , while we put that in a if block and fetching the payload for neccessary details it was coming null.
+so what we have to do the proper class mapping so as to get the customer details .
+
+Bexc password encryption:
+so actually one component was there bexc which tomcat server based for all the env it has different host and password were plain text which was vulnerable.
+and the configuration of the server are stored in yml files which are config components. so I was asked to encrypt and at the same time decrypt the password.
+So I had written logic encryption and decryption using cipher class where you put the plain text it will convert to encrypted password.
+and we will be using the decryption method logic to decrypt password to login and process the files from server.
+
+
+
+
+challanges you faced in the project:
+
+
+
+
+HashMap usage in your project:
+simple like if you are aware of splunk where we can check the logs, in logs we will will logging different fields like suppors countryCode, statusCode, BussinessCode, we can put those in key and values.
+
+
+
+*Note what is smart checkout?
+If your local changes are going to be overwritten by checkout, IntelliJ IDEA displays a list of files that prevent you from checking out the selected branch, and suggests choosing between Force Checkout and Smart Checkout.
+
+If you click Force Checkout, your local uncommitted changes will be overwritten, and you will lose them.
+
+If you click Smart Checkout, IntelliJ IDEA will shelve uncommitted changes, check out the selected branch, and then unshelve the changes. If a conflict occurs during the unshelve operation, you will be prompted to merge the changes.
+
+Email flow  DCH:
+We are  providing the alert notification for the customer singapore and hongkong, uk and uae.
+So we providing services in 3 ways pn, sms, and email.
+So if we are sending email we will be sending based on mail id, if it's pn based on device type and sms will send based on phone number.
+
+for email we are supporting both regions apac and emea.
+
+Apac(hk-gcb)
+emea(hk-gcb,sg-ipb)
+
+Email : Moengage
+
+Online flow- rqpr, emsb.
+Batch flow - eml
+Reverse  feed - ads(rm call)
+Unsubscribe - emus(rm call)
+bulk upload - bexc
+
+
+Online mode- api -cops -> nginx/psg -> dch ->
+Batch - kafka->cops -> dch -> ssg -> moengage.
+bulkupload -files -> eap -> dch -> Moengage.
+
+
+so how the flow works:
+We are not getting calls from any frontend, we are getting calls from the cops, cops is a kinda team they will send
+response to our layer which is dch we processing and sending it to the moengage we are not sending (the payload) directly to moengage we are sending throug ssg , ssg is connection between dch and vendor through ssg we are sending to moengage and from their we are getting back the acknowledgement to dch .
+
+
+Similary for kafka:
+cop will directly push the payload to dch, we will configure the kafka topic in our side and they will push the data to kafka topic and will process the data will insert the data in dch db and will populate it  to the moengage via ssg.
+It means batchwise data will be sent , if in one day two batches are running means that particular time you are receiving the data.
+
+bulkupload:They will put the file and  it will send the files via eap will get processed in dch and will be send to moengage
+
+
+
+
+
+Note: ads is for acknowledgement, where we will get the acknowlegement via moengage if the email is successfully delivered or not  we will be getting it as in files and we will be processing it in our dch side application and will send the records which we named as reverse feed to the cops via kafka , will posting the data to kafka.
+
+online flow: Rqpr-emsb: we are recieving the template based on api in rqpr, then we put that request to emsb, and it will happen via solace, rqpr will give 
+request to solace and emsb will process it one by one
+
+for components we have 3 things, ea, config and schemas
+in schemas we have configured what request is coming and response we are sending, it's like a swagger.
+So the request we are sending it should be like same to the request we configured in schema otherwise it won't worked

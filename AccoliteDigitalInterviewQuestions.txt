@@ -1,0 +1,244 @@
+interface Employee{
+ 
+public int sum(int a , int b);
+ 
+void display(){
+ 
+ 
+}
+ 
+}
+ 
+ 
+class Subhrajit implements Employee{
+ 
+public int sum(){
+
+System.out.println("Printing the sum");
+
+return 1+3;
+ 
+}
+ 
+void display
+
+}
+ 
+ 
+Employee e = (a,b)-> a+b;
+ 
+e.sum();
+ 
+Interface.super().live();
+ 
+class Test{
+
+private Test(int num){
+
+     System.out.println("In test"); 
+
+}
+ 
+}
+ 
+class Test2 extends Test{
+
+  private Test2(){
+
+    System.out.println("In test2"); 
+
+   }
+ 
+}
+
+ 
+Test2 t = new Test2();
+
+ 
+class A{
+
+public void test(){
+
+   System.out.println("In A");
+
+}
+ 
+public void test2(){
+
+  System.out.println("In test2");
+
+}
+
+private void test3(){
+
+  System.out.println("In test3");
+ 
+}
+
+}
+ 
+class B extends A{
+ 
+  public void test(){
+
+    System.out.println("In B");
+
+  }
+ 
+  public void testB(){
+
+    System.out.println("In testB");
+
+  }
+
+}
+ 
+ 
+class test{
+
+public static void main(String[] args){
+
+A a = new B();
+
+a.test();// what is the output of this?
+
+a.test2();//what is the output of this?
+
+a.testB();//what is the output of this?
+
+a.test3();//what is the output of this?
+
+ 
+class Test{
+
+private Test(int num){
+
+     System.out.println("In test"); 
+
+}
+
+}
+
+class Test2 extends Test{
+ 
+  private Test2(){
+
+super(num);
+
+System.out.println("In test2"); 
+
+   }
+
+}
+ 
+Test2 t = new Test2();
+ 
+ 
+In test2;
+ 
+A a = new B();
+
+a.test();// what is the output of this? IN B
+
+a.test2();//what is the output of this? IN test2
+
+a.testB();//what is the output of this? In testB
+
+a.test3();//what is the output of this? In test3
+ 
+class Test {
+ 
+	public boolean equals() {
+
+		return true;
+
+	}
+
+	public int hashCode () {
+
+		return 1
+
+	}
+
+}
+
+//PSVM
+
+Test t1 = new Test();
+
+Test t2 = new Test();
+
+map.put(t1, "hello");
+
+map.put(t2, "hi");
+
+System.out.println(map.size()); // what is the output of this
+
+System.out.println(map.get(t1)); // what is the output of this 
+
+System.out.println(map.get(t2)); // what is the output of this 
+
+ 
+Given an input string s, reverse the order of the words.
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+ 
+Test t1 = new Test();
+
+Test t2 = new Test();
+
+map.put(t1, "hello");
+
+map.put(t2, "hi");
+
+System.out.println(map.size()); // what is the output of this 1
+
+System.out.println(map.get(t1)); // what is the output of this hi
+
+System.out.println(map.get(t2)); // what is the output of this hi
+ 
+Given a string s, find the length of the longest substring without duplicate characters.
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ 
+ 
+class JavaPractice {
+public static void main(String[] args) {
+
+String s = "the sky is blue";
+
+String str[] = s.split(" ");
+swapp(s);
+
+System.out.println(swapp(s));
+
+
+System.out.println(s);
+
+}
+public static String swapp(String str){
+
+String str1[] = str.split(" ");
+int left =0;
+int right = str.length()-1;
+while(left< right){
+
+String temp = str1[left];
+
+str1[left] = str1[right];
+
+str1[right] = temp;
+
+}
+return new String(Arrays.toString(str1));
+
+}
+
+
+}
+ 

@@ -1,0 +1,264 @@
+1`	--->Find the third highest salary.
+
+Create TABLE Employee_Test (
+
+Employee_id int,
+Employee_name varchar(100),
+Employee_salary Decimal(10,2)
+);
+
+
+
+Insert into Employee_Test values (1,'Anis',10000);
+Insert into Employee_Test values (2,'Manis',20000);
+
+
+
+
+q-Selecting the max  salary:
+select Max(salary) from Employee_Test;
+
+q-Selecting the third max salary:
+select salary from Employee_Test Order by salary desc limit(2,1)
+
+q-What are indexes and how do you create indexes in sql?
+Ans: Indexes are mainly used for retrieval operation from database, supppose we have table and we have 1000 records
+and we want to fetch a particular record by name and the record is in the complete last row so in db it will search one by
+one row till the last row which is not at all efficient.
+
+so for that on a particular coloumn we will be using index.
+
+An index is a  dataStructure which will create a seperate coulumn for the specific coloumn you are searching the record for rather than 
+scanning the whole table.
+
+*In index their is a pointer for every record which point to real database.
+The query looks for specific row in index and the index  will be pointing to the real database for more information.
+Implemented ds:
+B-tree, hastable, bitMap indexes.
+
+q-Disadvantages of index?
+Ans: It always take up additional space in the memory for every column if you will create index it will take a lot of space in memory,
+and also if you want to update, delete a column the same operatio you have to do in index also , so it's better to put index for specific retrieval operations.
+
+*The view and stored procedure don't get deleted with drop table as they are outside the table.
+
+
+*So stored procedure is something where we keep the query saved if we want to use the same query in future scenario.
+
+*View is actually a virtual table where we have retrieve query in it to get the result in a table format.
+
+
+Q-What are joins:
+To get data from multiple table we take the help of joins.
+
+
+
+Practice:
+write a query to find the nth highest salary from table without using top/limit keyword.
+->select salary from emp_table as e1 where N-1 = (select count (distinct salary) from emp_table as e2 where e2.salary>e1.salary).
+
+
+q-Selecting the max  salary:
+select Max(salary) from Employee_Test;
+
+q-Selecting the third max salary:
+select salary from Employee_Test Order by salary desc limit(2,1)
+
+->write a query to find the duplicate in sql:
+select emp_id,count(*) from emp_table group by empId having count(*) >1;
+
+->write a query to find the empid sum and find the salary greater than 1000.
+
+select emp_id , sum(amount) from emp_table group by emp_id having sum(amount) >1000;
+
+->Write a query to find the even and odd records.
+select * from emp_table where mod(empId,2)=0;
+select * form emp_table where mod(empId,2)=1;
+
+->Write a query to find the first and last record from a table?
+last item
+select * from employee_table where employee_id = (select max(empId) from emp_table);
+
+first item
+select * from employee_table where employee_id = (select min(empId) from emp_table);
+
+
+Q-How do you copy all the rows of a table;
+
+->Create table emp_table as select * from emp_original_table;
+
+->Create table emp_table as select name,id from emp_original_table;
+
+Q-Write a query to retrieve list of employees working in the same department.
+Ans: select e1.emp_id, e2.emp_name from Emp_info as e1 , Emp_info as e2 
+     where e1.department=e2.department AND e1.empId!=e2.empId;
+q- find the last 3 records from a db table?
+Ans:select age,first_name,last_name from Customers order by age desc limit 3
+
+q-Write a query to fetch details of employees whose empLname  ends with an alphabet 'A' and  contains five alphabets.
+Ans: select * from customer where empLname like '____a'.
+
+
+Q-Fine tune your sql queries:
+* use specific field for select query rather that  using * which will give all the redundand data which might  be  useful for you.
+-select id ,  name, city from  employee
+
+*Avoid using distinct ,  as distinct  internally  works with group by and everytime you group a large processing is required.
+
+*While  using joins in table  please avoid where clause as it  create more number of  rowsets which is performance intensive.
+
+for  eg;   select  * from employee e,  project  p where e.id= p.id  -   this will create  row set for example  if you  having  9  rows in  employee table
+and 2 rows  in project table  total 18 rowset  will  get created and after  that  segregation will happen based on ids which  is very  resource  intensive.
+
+rather than we can use  join approach, 
+select *  from employee e inner join project p on e.empId = p.empId;
+
+*while filter use where rathen than   having.
+
+*Avoid too much joins on sql query, use only what is neccessarry
+
+*Avoid crusor at all cost
+cursor are basically used in stored procedure or script for operating on large volume set of data for row by row processing.
+
+
+
+
+
+
+Q-Normalisation in db?
+Normalisation is designing a db effectively so that we can avoid data redundacny(means data duplication.)
+Different normalisation -1nf,2nf,3nf,4nf,bcnf,5nf.
+Mostly company today try to normalise their db to 3rd nf.
+1Nf rules:
+->Each colomn should have single value .
+->Each row should be unique either through a single or multiple colomns.
+
+
+2nf:
+->it should first satisy  first 1nf.
+->All non key attributes must be fully dependent upon the candidate key, if non-key attributes are partially dependent on candidate key then split them into 
+seperate table.
+->Every table should have primary key and relationship between table should be established using foreign key.
+eg: suppose we are having order where we are ordering vehicle we can split the table to orderId and customer name, and product code.
+
+3rdNf:
+->Must be in 2nd nf
+->Avoid transitive dependency
+
+
+*Candidate key : it's a set of colomn which uniquely identify a record or row.
+*Non-key colomn: Any colomn which is not part of candidate key or primary key is called non-key colomn.
+
+Different Anamolies:
+->Insertion anamolies, suppose we have an order portal, correct the db is in such way that---> order id orderName order delivery Productcode product name product price , customer name, customer address, customer city, customer state
+
+suppose the db is in denormalisation form and we customer makes multiple purchase hence their will be redundancy of customer name if according to normalisation we would have segretated the table to order table, product table and customer table , we could have only updated the order table with same customer.
+
+->Deletion anamolies: 
+suppose the db is in denormalise form and we delete one record , then the whole record from the table will get deleted which is not correct.
+if we want to delete a specific order after normalisation of the table we can go to the  specific order table and delete the record which won't affect other tables.
+
+->update anamolies: 
+suppose in a  denormalise db we  want  to update the update the price of the product if we have  20 millions product all the the same products price has to be updated which is not efficient if we have a normalised form of table we can just update the product price in product table.
+
+
+
+Joins in Sql:
+Joins in sql are  used to retrive data from multiple table and fetching meaningful data from them.
+They are used along with select statement and join to perform operations.
+
+
+Types of joins:
+inner join
+self join
+left outer join
+right outer join
+full outer join
+cross join
+
+
+Inner join: it fetches row , if there is atlease one match of row between 2 tables found.
+->select empName from emp1 inner join emp2 on epmp1.id=emp2.id;
+
+Right outer join: In Right join it will fetch all the records  from right handed table along with the  full filled join condition from  left table and those are not matching  resulting from left table will showcase the value  as null.
+->select empName from emp1 right outer join emp2 on epmp1.id=emp2.id;
+
+Left outer join: In left outer join it will fetch the all the records from the left table and the full filled joined condition from the righ table.
+->select empName from emp1 left outer join emp2 on emp.id=emp.id;
+
+
+Full outer join:
+this condition will  fetch all the records from both the table the matched records as well as the unmatched records.
+-> select empName from emp1 right outer join emp2 on epmp1.id=emp2.id union select empName from emp1 left outer join emp2 on emp.id=emp.id
+
+
+self join: 
+To perform join operation on the table itself
+
+Q-> Find the employee details with same department without using where clause.
+select * emp_name from Emp as emp1 , Emp as emp2 where emp1.Dep_id = emp2.Dep_id AND emp1.id!=emp2.id;
+
+Cross join: the join will give a cartesian product of table it will give fetch you all the records from both the table. to find the total no of rows you have to multiply noOf rows in 1st table * noOf rows in 2nd table.
+
+
+Q->Write a sql query to add coloumn in a table?
+Alter Table emp_table Add Column email varchar(256);
+
+Q-create Index idx_last_name on Emp_table(last_name);
+->select * from Emp_table where last_name="Status";
+
+
+
+Important db queries asked in interviews?
+Create a table:
+
+Create Table employee_Table (
+
+employee_name varchar(100),
+employee_id int;
+employee_salary decimal(10,2)
+);
+
+Insert into Employee_test values (1,"shahid", 12000);
+Insert into Employee_test values (2,"anubhav",150000);
+
+)
+
+
+Update Employee_test SET emp_name = "Subhrajit", emp_salary = 20000 where emp_Id = 1;
+
+
+Write a query to find the  employee details whose salary is max from the all departments when you have employee and department table, write the sql query for oracle?
+
+Employee
+->name
+->dept_id
+->salary
+
+Department
+->department_Name====hr find the highest salary for hr.
+->department_id;
+
+select e.name, d.dept_id, e.salary from Employee e Join Department d on e.dpet_id = d.dept_id
+where e.salary = (select max(e2.salary) from Employee e2 where e.dept_id = e2.dept_id);
+
+->Find the nth highest Salary:
+SELECT salary
+FROM employees
+ORDER BY salary DESC
+LIMIT 1 OFFSET n-1;
+
+
+
+departmentWise sum salary
+select department, sum(emp_salary) from emp_table group by department having sum(emp_salary) > 100;
+
+
+max salary for employee in each department:
+
+select emp_salary, emp_department from emp_table from emp inner join (select max(emp_salary), department from emp_table group by department) e2 on 
+e1.department_id= e2.department_id AND e1.emp_salary = e2.emp_salary.
+
+Find the nth highest salary:
+select emp_salary from emp_table e1 where (N-1) = select count(e2.salary)
+ from employee e2 where e2.salary > e1.salary.

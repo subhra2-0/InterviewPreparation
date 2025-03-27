@@ -1,0 +1,150 @@
+
+
+Java 8:
+->Given a list of integers seperate odd and even numbers?
+->Find the duplicate element in integer or string? both conventional and java8
+->find the occurance of a string. java8 and conventional way
+
+->find the occurance of a duplicate element.
+->5)Get the list of all products that belongs to "Book" category and product price > 200 using java8 features.
+->reverse a string.
+->Find the second largest element
+->rotation of a string.
+->Find the number greater than 50 and find the average?
+->Find the prime number using  java8?
+->Find the second largest number?
+->Find the duplicate(Integer,String,charater).
+->Find the occurance(Integer,String,character).
+
+
+
+
+
+
+Normal  DSA:
+->Write a code to iterate hashMap using iterator.
+->Find the duplicates(Integer,String,character). Map.
+->Find the occurance(Integer,String,character).
+->Find the sum of 2 number with given input.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+List<Integer> num = new ArrayList<>();
+num.stream().filter(e->e%2==0).collect(Collectors.toList());
+
+num.stream().filter(e->e%2!=0).collect(Collectors.toList());
+
+Set<Integer> dup = new HashSet<>();
+num.stream().filter(e->!dup.add(e)).collect(Collectors.toList());
+
+List<Integer> dup = new ArrayList<>();
+
+Set<Integer> set = new HashSet<>();
+
+for(Integer i : dup){
+
+if(!set.add(i)){
+
+sout(i);
+dup.add(i)
+}
+
+}
+
+sout(dup);
+
+List<String> occurance = str.stream().collect(Collectors.functionalIdentity(),Collectors.counting());
+
+
+List<String> count = Arrays.asList(str.split(""));
+HashMap<String,Integer> occurance =count.stream().collect(groupingBy(Collectors.FunctionIdentity()),Collectors.counting());
+
+counts.entrySet().stream().filter(entryKey->entryKey.getValue()>1).map(e->e.getKey()).collector(Collectors.toList());
+
+Question 5 answer;
+
+List<Product> list = new ArrayList<>();
+list.add(new Product(101,"Java","Books",150));
+list.add(new Product(102,"Spring","Books",300));
+list.add(new Product(101,"HTML","Books",100));
+list.add(new Product(101,"CSS","Books",250));
+list.add(new Product(101,"Java","Books",150));
+
+list.stream().filter(p->p.getCategory().equalsIgnoreCase("Books"))).filter(r->r.getBooks()>500)).collect(Collectors.ToList()).forEach(System.out::println);
+
+
+Q-Given list of integers find the first element from the list?
+
+List<Integer> nums = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+nums.stream().findFirst().ifPresent(System.out::prinltn)
+
+Q-Given list of integers find the total number of element in the list?
+int num = nums.stream().count();
+System.out.println(num);
+
+Q-Given a list of integers find all the odd and even number in the list?
+List<Integer> list = Arrays.asList(1,2,3,4,6,8,19,13);
+list.stream().filter(i->i%2==0).forEach(System.out::Println);
+
+for odd
+list.stream().filter(i->i%2!=0).forEach(System.out::Println)
+
+Q-Given list of integers find the numbers starting with 5?
+nums.stream().filter(num->num.toString().startsWith("5")).forEach(System.out::println);
+
+note:map function takes argument as function interface so what it does is,
+it will map each object given as input to it's corresponding output into a stream
+
+flatMap: it will convert the list of list  into a single stream.
+
+
+MapVsFlatMap:
+map:
+List<Integer> ids = employees.stream().map(e->e.getId()).collect(Collectors.toList());
+
+FlatMap:
+List<String> citiesWorkedOn = employees.stream().flatMap(e->e.getCititesWorkedOn().stream()).collect(Collectors.toList());  // so map function in input it is taking as an employee object and return stream of cities again it's been drained to stream to give the a single stream of cities.
+
+Q-Given list of integers find the duplicate? 
+Set<Integer> numss = new HashSet<>();
+Set<Integer> unique = nums.stream().filter(i->numss.add(i)).collect(Collectors.toSet());
+
+Q-Find the maximum and minimum element in an list;
+int max= nums.stream().max(Comparator.naturalOrder()).get();
+System.out.println(max);
+        
+int min = nums.stream().min(Comparator.naturalOrder()).get();
+System.out.println(min);
+
+
+Q-sort the list in ascending and descending order:
+ List<Integer> ascSorted = nums.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+ System.out.println(ascSorted);
+
+nums.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);

@@ -1,0 +1,43 @@
+Hibernate:
+
+Hibernate is an orm tool to map java objects to the database.
+Hibernate is an implementation of jpa hence we can use the jpa annotation.
+
+
+=>With session factory we can get the session object for database operation and can cache it to reuse it again and again.
+
+=> session object is basically used for the connection with physical database to facialate the db operation like crud.
+
+
+trasaction ==> it specifies single unit of work.
+
+
+in summary: 
+the session factory creates a session object for the db operation using session object we can open a db connections and the operation like crud , ane one crud operation can taken as a transaction.
+
+
+Imp annotation used in hibernate?
+@entity
+Used with model class to specify they are entity beans.
+@Table:
+Used with entity bean to specify the corresponding table name in db
+@Access:
+We can use, so that hibernate can use getters and setters method.
+
+@Id
+To define the primary key in the entity bean.
+
+@GeneratedValue:
+to generate an unique id.
+
+@OnetoOne :
+
+@OnetoMany:
+
+
+@ManyToOne:
+
+@ManyToMany:
+
+
+Mapping in hibernate:

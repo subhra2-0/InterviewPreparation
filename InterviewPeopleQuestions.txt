@@ -1,0 +1,173 @@
+Input : "{","}","[","]","(", ")"
+
+["{", "(","[","]",")", "}"] -- true
+ 
+["{", "(","[","]","]", "}"] -- false
+ 
+ 
+["{", "}","(",")"] -- true
+
+
+["{", "(",")","}"]  -- true
+ 
+["{", ")","(","}"] - false
+ 
+String[] inputArray = { "abcd", "java", "dcba", "ajav", "xyz", "epam", "pame", "aepm" };
+ 
+expected output
+ 
+ 
+"epam", "pame", "aepm" 		
+ 
+"abcd" "dcba"
+ 
+"java" "ajav"
+ 
+You are given three integers X, Y and Z and two arrays A and B both of length N. You are also 
+
+given an integer sum which is initially equal to 0.
+
+You must perform N operations and in each ith operation you must do only one of the 
+
+following:
+
+1. Subtract B[i] from sum.
+
+2. Decrease both of X and Y by 1, then add A[i] * X * Y *Z to sum.
+
+3. Decrease both of Y and Z by 1, then add A[i] * X * Y *Z to sum.
+
+However, after each operation, X, Y and Z must all remain greater than or equal to 0.
+
+Find the maximum sum you can obtain after performing all operations.
+
+Sample Input:
+
+2
+
+1
+
+2
+
+2
+
+0
+
+0
+
+10
+
+5
+
+Sample output:
+
+0
+
+Explanation:
+
+Here, N = 2, X = 1, Y = 2, Z = 2
+
+A = [0, 0]
+
+B = [10, 5]
+
+It is given that in starting, sum = 0
+
+operation 1:
+
+Apply type 2 operation (i.e. Decrease both of X and Y by 1, then
+
+add A[1]*X*Y*Z to sum)
+
+X = 0, Y = 1, Z = 2
+
+sum = sum + 0*0*1*2 = 0
+
+operation 2:
+
+Apply type 3 operation (i.e. Decrease both of Y and Z by 1,
+
+then add A[2]*X*Y*Z to sum)
+
+X = 0,
+ 
+/*List<String> datalist = Arrays.asList("Java", "C", "Java", "Python", "GoLang", "Python", "Python");
+
+		// o/p - C
+
+		Optional<String> optional = datalist.stream().collect(Collectors.groupingBy(Function.identity(), 
+
+				LinkedHashMap::new, Collectors.counting())).entrySet().stream().filter(entry -> entry.getValue()==1).map(Map.Entry::getKey).findFirst();
+
+		if(optional.isPresent()) {
+
+			System.out.println(optional.get());
+
+		}
+
+		}*/
+ 
+import java.util.HashSet;
+
+import java.util.Set;
+ 
+public class LTiJavaTest {
+
+//1,7,2,3,8,5,4,6
+
+//	 sum = 9
+
+	// op - 7,2
+
+	public static void main(String[] args) {
+
+		int arr[] = {1,7,2,3,8,5,4,6};
+
+		Set<Integer> set = new HashSet<Integer>();
+
+		int sum = 9;
+
+		for(int num : arr) {
+
+			int diffValue = sum-num;
+
+			if(set.contains(diffValue)) {
+
+				System.out.println(num + "," + diffValue);
+
+			}
+
+			set.add(num);
+
+		}
+
+
+	}
+
+}
+
+ 
+//		String str = "Vishnu";
+ 
+		System.out.println("Enter the input");
+
+		Scanner s = new Scanner(System.in);
+
+		String input = s.next();
+
+		// Frequency of char.
+
+
+		Map<Character, Long> map = input.chars().mapToObj(c -> (char)c).
+
+				collect(Collectors.groupingBy(Function.identity(), LinkedHashMap:: new, Collectors.counting()));
+
+		System.out.println(map);
+
+	}
+
+
+
+
+
+ 

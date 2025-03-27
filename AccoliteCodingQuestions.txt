@@ -1,0 +1,30 @@
+Accolite coding questions:
+void m1(String s)
+void m1(Integer i)
+m1(null)
+ 
+List<String> list=new ArrayList();
+		list.add("a");
+		list.add("b");
+		list.add("c");
+		for(String s:list) {
+			if(s.equals("b")) list.remove(s);
+			
+			
+		}
+ 
+int[][] arr={{1,2},{3,4},{5,5}};
+ 
+int[] arr={1,2,3,4,5};
+int k=2;
+ 
+output:{4,5,1,2,3}
+
+
+Find the common elements from 3 arrays.
+
+int[] arr={1,2,3,4,5};
+
+k=2;
+output: 34512;
+ 

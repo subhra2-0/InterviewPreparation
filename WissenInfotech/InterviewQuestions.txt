@@ -1,0 +1,12 @@
+->HashMapImplementation:
+
+
+->Why we should override equals and hashcode method?
+Answer: to maintain the data consistency in hashing collection.
+Suppose for example , in HashMap -> corresponding to keys we check the equals operations, so if there's a hashcollision, than it will keep entries in a linked list structure in bucket other wise if the key is different 
+it will override the previous element. if equals method is not implemented then you might find duplicate entries in 
+a hashmap where we will face problem with incosistency retrieval.
+
+suppose we don't implement hashcode, then entries with same content might go into different bucket resulting in 
+data inconsistency.
+

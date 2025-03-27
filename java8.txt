@@ -1,0 +1,329 @@
+Java8 features:
+Lambda expression
+Lambda expression is an anonymous function, not having any name, not having any return type, not having modifier
+private void sayHello(){
+System.out.println("Hii how are you!!");
+}
+convert it to lamda expression:
+()->{
+System.out.println("Hii how are you")
+};
+
+private void add(int a , int b){
+System.out.println(a+b);
+}
+
+(int a, int b)->{
+System.out.println(a+b);
+}
+
+now we can further convert it to :
+Using type inference:
+(a,b)->{
+System.out.println(a+b);
+}
+
+private int getString(String str){
+return str.length();
+};
+
+we can convert:
+(String str)->{
+return str.length();
+}
+
+we can convert this to lambda expression:
+(str)->{
+ str.length();
+}
+
+Benefits of Lambda expression:
+->To enable funcitonal programming in java
+->To make code more readable,maintanable and coinscise code.
+->To enable parallel processing.
+->jar file reduction
+->elimination of shadow variables
+stream api
+optional classes
+Method references
+
+*Functional interface
+That interface where we have only one abstract method. but we can have multiple static and default methods.
+we can invoke lambda expression using functional interface.
+give a scenario where you will use traditional loop and you will use stream api
+
+inheritance in functional interface.
+public interface Parent(){
+public void hello();
+}
+
+public interface child extends Parents(){
+
+
+}
+
+yes the child interface will be a functional interface as the parent has only one abstract method, we can define the same method in child interface also
+eg:
+public interface child extends Parents(){
+public void hello(); //no compilation error.
+}
+if we define any other method name in the child interface it will give us a compile time error as it won't be anymore a functional interface.
+
+*Default Method inside interface:
+it is a method with body in interface.
+and it can be overriden as method implementation in child class.
+
+interface A{
+default void sayHello(){
+System.out.println("hii how are you");
+}
+
+interface B{
+default void sayHello(){
+System.out.println("hii how are you doing");
+}
+}
+
+class child implements A,B{// compile time error as it won't be able to distinguish from the parent class methods as methods signature are same.
+Child c = new Child(); 
+c.sayHello();
+}
+
+Solution
+class child implements A,B{
+public static void main (String[] args){
+Child c = new Child(); 
+c.sayHello();
+}
+
+@Overrid
+public void sayHello(){
+A.super.sayHello();  // with interface name you can call the method to distinguish them.
+}
+}
+enabling the functional interface using lambda expression.
+Traditional implementation:
+interface Employee{
+public String getName();
+}
+
+
+class EmployeeImpl implments Employee{
+public String getName(){
+System.out.println("Pratyashu!!")
+}
+
+}
+public static void main(String[] args){
+EmployeeImpl emp = new EmployeeImpl();
+emp.getName();
+System.out.println(emp.getName());
+
+}
+
+if implementing it using lambda expression:
+EmployeeImpl emp = ()-> {"Subhrajit!!"};
+System.out.println(emp.getName());
+Coinsciness in code base it reduces a lot of codes.
+if we follow the traditional approach then we have to make impl class to implement the interface, and make an object of it to 
+call the method inside the interface, if we use lambda expression calling the method inside the interface becomes very easy with less 
+code.
+
+
+static method inside interface:
+This method also have body.
+But cannot be overriden and changed in the implementation class.
+the static method is called by interface name.
+
+Threads using lambda expression:
+refer Intellij Idea.
+
+Comparator in lambda expression:
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+Collection.sort(numbers); //it will make the sorting in ascending order
+Collection.sort((a,b)->b-a);
+
+
+Student s1 = new Student(1,"vipul");
+Student s1 = new Student(2,"Sourav");
+Student s2 = new Student(3,"Harish");
+Student s3 = new Student(4,"Vivek");
+
+List<Student> st = new ArrayList<>();
+
+Collection.sort(st,(a,b)->b.id-a.id);
+
+System.out.println(numbers);
+
+
+Anonynmous function in java8:
+
+interface Employee{
+public String getEmployeeName();
+public int getEmployeeId();
+
+}
+
+
+using below following class we can implement the interface methods without having impl classes
+introducing of local variabls
+Employee emp = new Employee(){
+int a=2; local variable; this is final value cannot be changed
+
+@Override
+public String getEmployeeName(){
+retrun "Pratyashu";
+}
+
+@Override
+public int getEmployeeId(){
+retun 3;
+}
+
+}
+What is the difference between anonymous function and lambda expression?
+Answer: Anonymous function:
+        An anonymous class implements interfaces and abstract classes without creating additional sub-classes. Further, an anonymous doesn’t have a name, and it provides a class definition and instantiates it at the same time.
+
+        lambda expression:
+        The lambda expression implements functional interfaces, which are those interfaces having a single unimplemented method. A Lambda expression is essentially a method definition without a name. It makes code more concise and readable. It also provides a way to pass a function as a method argument.
+        
+        
+
+java8Predicate:
+Predicate is a boolean valued function, it will return true or false upon condition.
+
+eg:
+
+Predicate<Integer> pr = x->x>100000;
+System.out.println(pr.test(1));
+
+//eg:
+int salary=10000;
+if(pr.test(salary)){
+
+}
+
+it is same, the same thing can be represented in a traditional way:
+public boolean func(int salary){
+return salry>1000;
+
+}
+Predicates holds the condition, if the condition will be true or false.
+
+
+note: why stream was introduced.
+to get the collection into a form where we can use it for functional programming.
+
+->filter the number to even and find the sum.
+List<Integer> listNumbers = {1,2,3,4,5,6,7,8,10};
+int num= listNumbers.filter(x->x%2==0).maptoInt(x->x).sum();
+
+Function in java8:
+Function: It represents a function which takes in one argument and produces a result.
+Function<String,Integer> fun = x->x.length;
+Function<String,String> fun1 = x->x.substring(0,3);
+
+Function<List<String>,List<String>> students = x->{
+
+List<String> list = new ArrayList<>();
+for(Student s : students){
+if(fun1.apply(s.getName().equalsIgnoreCase("vip"))){
+result.add(s);
+}
+}
+return result;
+
+}
+
+
+};
+
+Student st = new Student(1,"Subhrajit",7008451197);
+Student s2 = new Student(2,"Pratyashu",7973555661);
+Student s3 = new Student(3,"Abhijit","7008451197");
+
+List<Student> st = new ArrayList<>();
+st.add(st);
+s2.add(s2);
+s3.add(s3);
+List<Student> students = students.apply(st);
+
+
+Consumer in java8:
+Consume the data it won't return anything.
+it has accept method inside it.
+Consumer<List<Integer>> nums = li -> {
+
+for(Integer i : li){
+System.out.println(i+100);
+
+};
+nums.accept(Arrays.asList(1,2,3,4));
+
+}
+
+supplier in java8:
+supplier will just give one output:
+
+Supplier<Integer> sup = ()->1;
+System.out.println(sup.get());
+
+BiPredicate in java8:
+it will take  2  arguments:
+BiPredicate<String,Integer> num =  (str,x)-> str.length==x;
+num.test("sub",3);
+
+BiFunction in java8:
+It will also take 2 arguments:
+BiFunction<String,String,Integer> fun = (x,x)-> x.length() + x.length();
+System.out.println(fun.apply("Veenu","Mahesh"));
+
+
+
+unary and binary operator:
+unary operator extends  functions.
+Unary operator is such a function where in outpur you are expecting an integer and in input you are giving an Integer.
+
+UnaryOperator<Integer> intmultiply = x->x*x;
+System.out.println(intmultiply.apply(5));
+It is a special case of function where we want same datatype for input and output.
+
+BinaryOperator:
+it is a special case in function where you have 2 input and you one one output of the same datatype.
+Eg: BinaryOperator<String> biOperator = (str1,str2) -> str1+str2;
+biOperator.apply("subhman","Gill");
+
+
+Method reference :
+Method reference allow us to refer to a method without invoking it. Making our code cleaner and more readable.
+They can be used in the place of lambda expression when the lambda expression calls an existing method.
+
+Class Test{
+public static void String test(string s){
+
+System.out.println("Test this method");
+}
+
+Public static void main String(args{}){
+
+List<String> str = Arrays.asList("Ram","siyaram","siyaram","jay", "jay ","ram");
+str.forEach(x->System.out.println(x)); // this is the lambda expression way to print all the string values.
+
+if there already an existing method which does the same thing we can replace the lambda expression as such
+str.forEach(Test::test); // where it is refering to the test method in test class.
+}
+
+}
+
+
+
+Static key words questions.
+Static method, static variables,
+why we use static is an entry point in main in java

@@ -1,0 +1,17 @@
+Synchronization:
+when multiple threads try to acces the same shared resource, synchronization allows us that one thread can only access the shared resource at one time once the execution is completed the next thread will access.
+When multiple thread act upon the shared memory or resource there is a possiblity of memory inconsistency and there 
+is a chance one thread can intefer other thread. So this is the basic problem if we don't implement the 
+synchronization.
+
+How many types of threads are there?
+Answer:
+User threads: are threads which are high priority threads, created by application or the users.
+jvm will not exit until all the user thread finish their work
+Jvm will wait for the user thread to finish their task.
+Daemon Threads are threads which are created by the jvm.
+This thread mostly performed in background for example garbage collection.
+
+
+Q-Can 2 thread have same name, if yes how will differentiate both?
+yes we can identify them by thread id, and we can retrieve it using thread id.

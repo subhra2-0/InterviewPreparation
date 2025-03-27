@@ -1,0 +1,96 @@
+Q-what is the use of @Profile annotation.
+Answer:
+Like as a developer we will be working in different environments supposed we developed something we will be running
+it locally in develop env and for testing we need to send it to qa team they will be having a qa env .
+so the set of db configuration and server configuration will be different right hence will be using profiling for
+so that it can take up application properties from specific property files.
+Spring Boot’s Profiles allow developers to manage these configurations easily.
+@PropertySource:
+Suppose our dev profile is active and we want to pick a specific profile from the prod env file we don't want to use the db configuration and server configuration from the prod file we can use @PropertySource mentioning the file 
+name it will pick the specific property.
+
+@Profile:
+so in @Profile(prod) if we mentioning the evn and in master properties file we have the active profile as prod then
+only it will creat the bean of that class otherwise it will throw resource not found url.
+Note: Make sure not to use profiling in master application.property, Use it in vm arg or while running jar you can provid -D spring.profile.active= dev.
+
+
+What is @SpringBoot annotation?
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan
+
+@SpringBootConfiguration:
+Will tag the class as a source of bean defination.
+So for the whole application we will be getting the bean in the main class and this creation of bean is actually
+Supported by the other two annotations.
+
+@EnableAutoConfiguration
+Whatever dependecies we add in pom.xml are set of jars we dowonload from the central repositories.
+So for a specific dependency @EnableAutoConfiguration is repsonsible to do all the autoconfiguraiton related to that dependency.If we have starter-web dependecny it will automatically configure the tomcat server and spring mvc for us. if we have starter jpa it will configure the datasouce and entity manager for us
+
+@ComponentScan
+It will scan all the subpackages class inside the defaault class looking for bean and responsible for managing the 
+lifecycle of those beans in spring container.
+
+What is the difference between configuration and bean?
+Ans- @Component is a class level annotation
+     @Component represents a general level bean.
+     Automatically creates a bean of the class while component scan , auto scanned by spring.
+     @Component we cannot write the logic for the specific bean 
+
+     @Bean is a method level annotation
+     @Bean represents used to explicitly declare a bean.
+     @Externally need to do the configuration by adding @configuration on a class and inside method we can add @Bean annotation on every method.  
+     @Bean while creating we can give our own logic, like some true, false condition if condition is true it will create a bean if it's not true it won't      create.
+
+
+in which scenarios we can use @bean and @component
+For @Bean
+->Conditional interface is there based on condition it will return the bean,if that condition is true it will return the bean or else it won't return any bean.
+-> we can write the logic for the bean either we can return a custom value or a default value
+
+For @Component 
+-> We don't have such condition as the component scan will look for the @Component annotation and automate the process and will create the bean of that particular class.
+-> But in case of @Component we can write the logic for the bean.
+
+
+
+q-What are the advantages of spring boot?
+->Spring boot is the enhancement of the existing spring framework with minimal configuration.
+->In springframework lot of configuration has to be taken care by the programmer but in spring boot it is reduced.
+->Spring boot is mainly used to develop rest apis
+->The primary feature of spring-boot is autoconfiguration
+->Spring boot provides embedded server such as tomcat,jetty and netty
+
+
+Spring framework vs Spring boot?
+->Starter pom
+with starter pom our maven configuration get simplified
+so if you take example of spring-starter-web it fetch all the dependencies relate to develop a web application 
+using spring boot
+->Version Management:
+In spring based project version has to be taken care by programmer itself
+so it will take what is the latest version of child dependency that is compatible to parent version.
+But in spring-boot their is a starter pom which take of the version management of all the child dependencies
+->AutoConfiguration
+If you see only in spring based application you can find a lot xml configuration, in spring boot this we get rid of this xml files.
+->Component Scanning:
+It is used to identify which classes need to be consider as a spring bean in our application.
+Actually in spring based project programmer has to manually make which packages should be consider as spring bean.
+In spirng boot project @SpringBoot annotation provide us the @component scan.
+->Embeded server
+for spring based project externally you need to configure a server, where as in spring boot application we have embedded server already as tomcat, jetty and etc.
+
+Q- Depedency Injection?
+Injecting the dependend object into a target object is called dependency injection.
+Suppose the controller class wants to communicate with the service class so we need to inject service class objec into the controller class.
+So when the dependency injection is taken care by spring framework our classes will loosely coupled in our application.
+
+
+
+-------------------------------------------
+which db you are using in your appllication and how did you integrate?
+Ans:
+
+

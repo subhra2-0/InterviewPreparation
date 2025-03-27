@@ -1,0 +1,27 @@
+Ey java developer Interview questions....
+
+What is the difference between spring and spring boot?
+
+
+public int compare (Employee e1, Employee e2){
+return e1.getAge() - e2.getAge();
+}
+
+
+Comparataor<Employee> emp = (e1,e2)->e1.getAge() - e2.getAge();
+
+
+List<Employee> emp = new EmployeeMap(1,"Subhrajit",17000);
+
+
+Map<Integer,String > map =emp.stream().collect(Collectors.toMap((x-x.getEmpId, x->x.getSalary));
+
+map.forEach(x,y)->System.out.println(x+""+y));
+
+Map<Integer,String> maps = emp.stream().filter(x-x.getHr()=="admin" || x->x.getHr()=="Santosh")collect(Collectors.collect(groupingBY(x->x.getEmployeeName),Collectors.summingDouble(x->x.getSalary))
+
+
+
+
+
+

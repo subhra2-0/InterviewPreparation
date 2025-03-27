@@ -1,0 +1,123 @@
+Design Pattern:
+Design patterns are well proved solution of commonly occuring problems in software design.
+Using design pattern we can solve the complex and classic problems in software world and we don't have to go looking for new solutions as these are already tried and tested solutions.
+Every pattern is a problem and they have provided the core solution to it , and we according to our need implement it.
+Categorization of design pattern, structural , and behavioural design pattern.
+1)Creational design pattern-Factory, builder , Singleton design pattern.
+
+Q-How to break singleton Pattern?
+Ans: We can use reflection api to break singleton pattern using contructor initialization go through the intellij code.
+Reflection api is used to examine and modify the behaviour of method , classes, and interface at the runtime.
+Reflection can be used to get the information for class, constructors and methods.
+using... .getClass(), .getMethod(), .getConstructor().
+
+how to break it refer to the intellij code.
+call the getDeclaredConstructor on singleton class, set the accessbility to true , than create the instace
+you can get another object with different hashcode.
+
+
+
+Solutions:
+1)if object is there=> throw exception from inside constructor.
+2)Use enum.Java internally makes sure enum value is instantiated only once.Enums are globally accessible and they can be used for singleton. but only draw back is it doesn't allow lazy initialization.
+
+Using serialization and deserialization we can break the singleton pattern.
+Solution: Implementing read resolve method we can protect singleton from breaking.
+
+Using clone method we can break the singleton pattern.
+clone method which override we can return the singleton instance to protect from breaking Singleton pattern.
+
+
+
+Factory Design pattern:
+When their is a super class and multiple child classes and we want to get object of subclasses based on input and requirement
+We are hiding the internal implementation of creation of object from the client and will be creating the object based on input requirement.
+Suppose their is vehicle factory, and we have different vehicles -> car, bus , truck... so the client will be least concerned about the internal implementation of car bus and truck objects he will be just passing the input and will get specification of the particular object.
+
+It gives you a codebase, where the factory methods will be returning the same kind of object to avoid duplicacy in the buisness logic
+
+Factory class are those class which have method to return object of a class based on input requirements.
+
+Advantages of factory design pattern:
+->Focus on creating object of interface rather than implementaion.
+->loose coupling, more robust code.
+
+
+Abstract factory:(Their will be another layer of abstraction, one factory will be using another to get an object)
+In factory desing pattern what we used to have is, suppose we had a factory client which will have the internal implementation, or the logic to get the 
+objects based on parameter, now Abstract factory another layer factory will be added , where inside it will have the internal implementation and that object will be given factory client, now factory client also doesn't know how to create the objects.
+Real world example of factory design pattern
+Architect creates codebase for the team and the team will use it
+calendar and numberformatter in java
+UI framework design , you might have noticed there might be uiframework or libraries are already present, where we used to create buttons and etc. you never get to know the implementation but you just use the library to use the button feature.
+
+We will be creating a factory of factory design pattern where we will create the object which belong to the family of similar object
+
+Q-what is the difference between abstract factory design pattern vs factory design pattern?
+->Factory design pattern  their will be a factory class which will have the methods and it will have the internal 
+implementation of giving the objects based on the client requirements.
+->In Abstract factory design pattern  the factory itself doesn't know the internal implementation how the object is being created, it relies upon another factory or a layer which responsible for creating the object and it gives the object to factory.
+
+
+Iterator Design pattern:
+so basically we want to traverse the object in a collections. and different collection will have different implementation, so to traverse it we have a common way that is iterator design pattern. using this desing pattern 
+we can access to objects in a collections and we can process  it.
+
+So basically it allows  a way to access the elements of an object without exposing it's implementation.
+
+
+
+Builder design pattern:
+Builder pattern solves the problem of complex constructor, suppose we have an optional constructor which we don't
+want to create objects, here we have desing pattern which resolve this design pattern.
+Rather than using a large constructor with many parameters, the Builder Pattern lets you build an object incrementally by calling methods on a builder object
+
+why to use:
+Simplifies Object Creation:
+
+When a class has many attributes (especially optional attributes), passing all of them through a constructor can make the code hard to read and error-prone.
+The Builder Pattern simplifies this by allowing only the necessary parameters to be passed and providing readable method names for optional parameters.
+
+Avoids Constructor Overloading:
+
+Without the Builder Pattern, you might have to define several overloaded constructors to handle different combinations of parameters. This can lead to messy and unmaintainable code.
+With the Builder, you use clear, chained methods to specify parameters, and you don’t need multiple constructors.
+
+
+Prototype  design pattern:
+The concept is to copy an existing object rather than creating an instance from the scratch. Because creating a new object can be costly. this approach saves costly resource and time , especially when object creation is heavy process.
+Whenever we make an object of any class while creating object if we are executing complex logic, so rather than alway creating the object from scratch we can clone the object and make use of it.
+Complex logic such as while calling a db, may be reading a file or calling over a network .
+
+Shallow copy and deep copy:
+Shallow copy:
+if we are cloning an object1 and the inside the object their is another object called student. And if clone the object to object2 the student object reference will be cloned to object2. so the reference of student object both in object1 and object 2 will be same. both the student object reference will be pointing to same object in heap mm.
+hence changing one student object will change the other student object too.
+
+Deep copy:
+For deep copy, taking the same example as in shallow , the Student object reference what we have in object 1 has it's is pointing to student object in heap memory correct.
+so if we deep copy it won't copy the student object reference it will copy the student object actual value.
+so what happens another student object we will be having in heap with different reference in deep copy.
+so when we do deep copy the in object2 the student object reference will be pointing  to the new student object that is creted in heap memory, hence copying the value, so if we change the value of student object in object1 it won't impact the value of student object in object2.
+
+Observer desing  pattern:
+So in this design pattern their will be one subject and multiple observer or we can say multiple dependents object,
+if the state of subject changes then it will be notified to other dependent objects.
+
+Adapter Design pattern: is sturctural design pattern that allows incompatible interfaces to work together.It acts 
+as a bridge between two objects or systems that otherwise couldn't interact directly because they have different interface.
+
+java stream classes use adapter  design pattern.
+Stream in java represent the sequential flow of data from one place to  another.
+Java Stream classes :  Byte stream  classes,  Character  stream classes
+Byte stream  classes: Input stream classes, Output Stream  classes.
+Character stream  classes: Reader  classes, Writer  classes.
+The concept is  we  have to connect with 2 interfaces which are not  compatible with eachother and to do so you write an  adapter so that both interface understand eachother.
+Suppose a legacy code is to be integrated with a new code, so both will be incompatibe hence we can take help of an
+adapter.
+Arrays.asList(array), is an example of adapter design pattern.
+
+
+
+
+

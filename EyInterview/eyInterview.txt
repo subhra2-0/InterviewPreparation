@@ -1,0 +1,7 @@
+
+Ey Interview:
+
+fibonaacci series
+to check if a string is palindrome or not
+find the duplicate elements from table 
+reverse a linkedList.
