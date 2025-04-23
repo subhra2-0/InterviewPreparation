@@ -56,6 +56,8 @@ Explain this question with an array example
 ->Flatten the nested array.
 ->Check if an array is mountain array or not?
 Given an array arr[]. The task is to check whether it is a mountain array or not. A mountain array is an array of length at least 3 with elements strictly increasing from starting till an index i, and then strictly decreasing from index i to last index. More formally arr[0] < arr[1] < arr[i] >arr[i+1] > arr[i+2] > arr[N-1]. 
+->Reverse a sentence having words eg; how are you----> you are how
+->Reverse a sentence having words and then reverse the words also. eg; how are you---> uoy era woh
 
 Examples
 Input: arr[] = {4, 4, 3, 2, 1}
