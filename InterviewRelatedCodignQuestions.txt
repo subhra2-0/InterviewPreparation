@@ -24,6 +24,7 @@ Interview all coding questions:
 ->Find the sum of subArray from nested array.
 ->Filter the odd and find the sum.
 ->Merge 2 unsorted array into one.
+->Find the second largest salary from employee object
 
 DsaQuestions:
 ->Fibonacci series..
