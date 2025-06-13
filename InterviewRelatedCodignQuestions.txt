@@ -26,6 +26,7 @@ Interview all coding questions:
 ->Merge 2 unsorted array into one.
 ->Find the second largest salary from employee object
 
+
 DsaQuestions:
 ->Fibonacci series..
 ->Check if a string is palindrome or not
@@ -74,7 +75,7 @@ Output: true
 ->rotate an array to right till k target;
 -> check if an array is a rotation of itself.
 ->flatten nested hashMap.
-->
+->reverse a String with only vowel reversing.
 
 
 
