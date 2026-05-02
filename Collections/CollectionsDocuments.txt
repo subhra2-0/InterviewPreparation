@@ -27,6 +27,14 @@ Iterable (interface)
                │     ├── ArrayDeque (class)
                │     └── LinkedList (class)
 
+Map (interface)
+   ├── HashMap (class)
+   │     └── LinkedHashMap (class)
+   ├── Hashtable (class)
+   ├── SortedMap (interface)
+   │     └── NavigableMap (interface)
+   │           └── TreeMap (class)
+
 
 
 
