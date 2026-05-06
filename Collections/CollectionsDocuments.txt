@@ -35,7 +35,13 @@ Map (interface)
    │     └── NavigableMap (interface)
    │           └── TreeMap (class)
 
-
+Q-Internal working of arraylist?
+few pointes to be noted, 
+-> ArrayList is know for dynamic resizing, backed by array and internally uses dynamic array to store elements.
+->If you have a ready heavy operation where you want random access of the element you can prefer arrayList, but if
+their insertion deletion operation , arrayList is not preffered because of timeComplexity and the reason is 
+ArrayList internally uses array to store elements any insertion or deletion will have element shifting which time consuming 
+and makes the operation very slow.
 
 
 q-What is the difference between array and arrayList?
