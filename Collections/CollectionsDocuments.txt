@@ -43,6 +43,8 @@ their insertion deletion operation , arrayList is not preffered because of timeC
 ArrayList internally uses array to store elements any insertion or deletion will have element shifting which time consuming 
 and makes the operation very slow.
 
+-> In arrayList for getting the elemeent the time complexity is big(1).
+
 
 q-What is the difference between array and arrayList?
 Ans: 
