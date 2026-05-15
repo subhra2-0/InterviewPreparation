@@ -96,6 +96,16 @@ if you remove or element bitwise shifting is required.
 Note: some timeComplexit operation - 0(1) --- only one operation
                                    - 0(n) --- one for loop operation where one completer search is been done on the whole array
                                    - 0(n2) --- one outer for loop , and one inner for loop two search operation will happen.
+
+IdentityHashMap:
+In Java, an IdentityHashMap is a special implementation of the Map interface that compares keys using reference equality (==) instead of logical equality (equals()).
+The normal HashMap compares keys using:
+hashCode()
+equals()
+
+while IdentityHashMap compares keys using:
+System.identityHashCode()
+
 LinkedList:
 ->Linked list internally uses doubly linked list to store elements.
 ->Manipulation in linked list is faster, as we have to manipulate the pointers to store and add the elements.
