@@ -142,6 +142,10 @@ Q-What is  equal and hashcode contract?
 In hashbased collection we can find the scenario, if two objects are equal than their hashcode not equal we can have duplicates in set and we can incorrect
 retrieval from maps.
 
+*what if we don't equals method only hashcode is overriden?
+Still we will have inconsistency behaviour in hashbased collection.
+because it will use default equals method of object class which will compare both the object referece not the internal data of the objects.
+
 
 Q- What is fail-safe and fail-fast iterator?
 *Iterator is an interface that provides a way to traverse through a collection of objects.
