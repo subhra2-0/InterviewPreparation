@@ -1,0 +1,15 @@
+Concept of Strings:
+
+
+
+
+
+Two ways to create string, one using new keyword and the other using string literal
+String s1 = "bob"; // string literal
+String s3 = "bob";
+String s2 = new String("bob"); // string using new object
+
+So once we create string using string literal it will create an object in the stringConstantPool which is a part of the heap memory and the reference eg: s1, will be in the stack.
+so if we create another string literal with s3 with bob , it will not create another object it will just use the referece to point the same object for bob.
+Now in the case of String s2 a new obect will be created in the heap memory not in the scp with object bob. the speciality of using new keyword is it can create a new object both in heap memory and
+scp , but in this case as bob already present is scp it will not be created.
