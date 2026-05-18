@@ -166,10 +166,16 @@ q-What is dictonary in java collections?
 ->null key and null value both are not allowed.
 ->duplicate keys are not allowed.
 
+Q-what is the difference between stack and heap?
+Stack memory is faster in nature, it is used to store local variables and method calls, whenever a new method is invoked it creates a stack frame in the stack memory.
+This stack frame contains local varialbes, method name , and return addresses of that method. when the method execution is finished this stack frame is deleted from the stack memory(LIFO).
+Heap memory is slower in nature, it is used to store objects for longer duration, when a new object is created it occupies space in the heap memory and any variable which is not referring to heap object garbage collector will be claim the memory of that object.
 
 q-Garbage collection in java?
 -> It is a background process, when the object is created it get store in the heap memory, the object which are no longer used by application, 
 the jvm automitacally remove those object hence helping developer for freeing up the mm space.
+
+
 
 
 Memory leak issue:
