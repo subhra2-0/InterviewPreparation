@@ -191,6 +191,11 @@ Q=How to prevent memeory leakage issue?
 ->making sure to use the existing objects.
 -> closing the external resources connections, and making use of try resource block for proper connection handling.
 
+Q- What is outOfMemory error?
+
+
+Q-Try with resource and different from try catch?
+
 Finalize method:
 ->Finalize method is called on an object before the object is garbage collected.
 ->When an object is tied up to an external resource , for eg: the object is connected to db connection or to file where it is reading from file.
