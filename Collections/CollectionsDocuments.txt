@@ -191,6 +191,8 @@ Q=How to prevent memeory leakage issue?
 ->making sure to use the existing objects.
 -> closing the external resources connections, and making use of try resource block for proper connection handling.
 
+Q- What are the different parts of the heap?
+
 Q- What is outOfMemory error?
 
 
