@@ -192,11 +192,22 @@ Q=How to prevent memeory leakage issue?
 -> closing the external resources connections, and making use of try resource block for proper connection handling.
 
 Q- What are the different parts of the heap?
+In heap we have 3 parts, young generation, old generation and metadata, before java8 it was pemgen but now it is metaspace.
+Young generation have:
+EdenSpace: where the new objects are initialized and they occupy some memeory in heapSpace
+survivorSpace:Their will be one round cleanup using garbage collector to remove the unreferenced objects, the objects which is still active from that cleanUp it moves to
+surivorspace.
 
+OldGeneration: after several cycles of garbage collections the object which are long lived will move to the OldGeneration.
+
+MetaSpace: this is the information related to class load by Jvm , it will store the class metadata, methods metadata, fields metadata.
 Q- What is outOfMemory error?
 
 
 Q-Try with resource and different from try catch?
+
+
+
 
 Finalize method:
 ->Finalize method is called on an object before the object is garbage collected.
