@@ -244,6 +244,27 @@ Read and write access elements(We add element using add method).
 Can retreive index with nextIndex and previousIndex.
 
 
+Code 1: Modification through the iterator (safe)
+ListIterator<String> it = list.listIterator();
+
+while (it.hasNext()) {
+    String s = it.next();
+    if (s.equals("A")) {
+        it.add("X"); // it will not throw concurrent modification exception as we are adding the iterator and internally it updates the modcount.
+    }
+}
+
+
+Code 2: Modification through the list (unsafe during iteration)
+ListIterator<String> it = list.listIterator();
+
+while (it.hasNext()) {
+    String s = it.next();
+    if (s.equals("A")) {
+        list.add("X"); // will throw concurrent modification exception as we are adding the element to the list.
+    }
+}
+
 
 q-How does HashMap works internally?
 
