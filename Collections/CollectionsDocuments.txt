@@ -265,6 +265,11 @@ while (it.hasNext()) {
     }
 }
 
+Note: 
+Iterator is a general-purpose cursor for traversing collections in the forward direction. It supports reading elements and removing them during iteration.
+
+ListIterator extends Iterator and is available only for lists. It supports bidirectional traversal, insertion, replacement, and index-based navigation. Use Iterator for simple traversal and removal; use ListIterator when you need to modify a list or move in both directions while iterating.
+
 
 q-How does HashMap works internally?
 
