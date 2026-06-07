@@ -363,7 +363,7 @@ Stack:
 queue:
 ->In queue from both end we can perform insertion and deletion from both the end.
 ->In queue the element which is inserted first is also deleted first which is called fifo (First in First Out).
-->enque and deque operation.
+->enque and deque operation. (Offer and Poll)
 -fifo
 types- circular queue , priority queue and double ended queue
 
