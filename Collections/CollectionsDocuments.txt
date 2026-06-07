@@ -352,6 +352,8 @@ HashTable:
 What is the difference between stack and queue?
 Stack:
 ->in stack only from one end deletion and insertion is possible.
+->In stack an element inserted first is deleted last , which is called LIFO(Last in first Out).
+->
 ->push and pop operation
 ->Lifo
 
@@ -359,7 +361,8 @@ Stack:
 
 
 queue:
-->In queue from both end we can perform this operation, addition and insertion.
+->In queue from both end we can perform insertion and deletion from both the end.
+->In queue the element which is inserted first is also deleted first which is called fifo (First in First Out).
 ->enque and deque operation.
 -fifo
 types- circular queue , priority queue and double ended queue
