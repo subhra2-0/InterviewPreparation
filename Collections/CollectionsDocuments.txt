@@ -367,6 +367,8 @@ queue:
 -fifo
 types- circular queue , priority queue and double ended queue
 
+Note: A Queue follows FIFO and supports insertion at the rear and deletion at the front. A Deque extends this concept by allowing insertion and deletion at both the front and rear, making it more flexible while still providing O(1) operations at both ends
+
 
 
 *TreeMap:
