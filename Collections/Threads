@@ -8,3 +8,14 @@ Threads:
 Threads are part of the process.
 The ms word which we are using in background many process are running, like spelling check, save and others.
 Threads work in a shared memory space.
+
+Q-what is multiThreading in java, and why it is important?
+Multithreading is the execution of multiple threads in a process for faster performance.
+eg: suppose a customer is placing an order:
+sending email--- 1 thread
+sending sms --- 2 thread
+updating the inventory - 3 thread
+making the payment - 4th thread
+getting the order recieved successfully - 5th thread
+
+These are the mutiple threads are working to achive a task for customer to place the order.
