@@ -1,1 +1,10 @@
+Q-Difference between process and threads?
+Process
+Program in execution.the program which gets loaded into the Ram memory.
+suppose we running a chorme browser , ms word, powerpoint these are all independ process.
+Proccess occupies it's own memory.
 
+Threads:
+Threads are part of the process.
+The ms word which we are using in background many process are running, like spelling check, save and others.
+Threads work in a shared memory space.
