@@ -19,3 +19,7 @@ making the payment - 4th thread
 getting the order recieved successfully - 5th thread
 
 These are the mutiple threads are working to achive a task for customer to place the order.
+
+Q- what are the ways to create thread?
+extending thread class and implementing runnable interface
+
