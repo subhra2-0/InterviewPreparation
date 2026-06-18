@@ -23,3 +23,12 @@ These are the mutiple threads are working to achive a task for customer to place
 Q- what are the ways to create thread?
 extending thread class and implementing runnable interface
 
+Q-What are daemon Threads?
+Daemon threads are the background threads which support the user threads.
+A daemon thread is a low-priority background thread that automatically terminates when all user threads finish execution.
+Eg: garbage collector, cache cleanup, Session cleanup.
+
+Q-What is RaceCondition?
+Race Condition is a scenario when a multiple threads try to access the same shared resource, resulting in incosistency behaviour.
+It can be prevented using syncronization , atomic classes and locks.
+
