@@ -35,3 +35,5 @@ It can be prevented using syncronization , atomic classes and locks.
 
 Q-What is join in threads?
 
+Q-How object gets affected in syncronized class and synchronized methods?
+
