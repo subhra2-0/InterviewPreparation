@@ -32,3 +32,6 @@ Q-What is RaceCondition?
 Race Condition is a scenario when a multiple threads try to access the same shared resource, resulting in incosistency behaviour.
 It can be prevented using syncronization , atomic classes and locks.
 
+
+Q-What is join in threads?
+
