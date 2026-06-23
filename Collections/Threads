@@ -34,6 +34,9 @@ It can be prevented using syncronization , atomic classes and locks.
 
 
 Q-What is join in threads?
+In joins the main thread will wait for the target thread to complete the execution than only the maim thread will proceed to the next execution
 
 Q-How object gets affected in syncronized class and synchronized methods?
+suppose inside class we have 2 method as syncronized so it will get object lock suppose for obj we call method1 (Sync) will execute first then method2 (sync) execute next if method3 without sync it will execute concurrently
+if we create two seperate object obj1 and obj2 and call obj1.method1() and obj2.method2() then it will execute concurrently
 
