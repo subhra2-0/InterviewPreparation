@@ -40,3 +40,9 @@ Q-How object gets affected in syncronized class and synchronized methods?
 suppose inside class we have 2 method as syncronized so it will get object lock suppose for obj we call method1 (Sync) will execute first then method2 (sync) execute next if method3 without sync it will execute concurrently
 if we create two seperate object obj1 and obj2 and call obj1.method1() and obj2.method2() then it will execute concurrently
 
+Q- what is deadlock and how to prevent deadlock/?
+A deadlock is a situation in multithreading where two or more threads are permanently blocked because each thread is waiting for a lock held by another thread. 
+For example, if Thread-1 holds Lock A and waits for Lock B, while Thread-2 holds Lock B and waits for Lock A, neither thread can continue, resulting in a deadlock. 
+Deadlocks can be prevented by always acquiring locks in a consistent order, 
+minimizing the scope of synchronized blocks, avoiding unnecessary nested locks, and using ReentrantLock.tryLock() with a timeout to avoid waiting indefinitely.
+
